@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { addNotes } from '../../actions/'
 export class App extends Component {
 
+  componentDidMount() {
+
+  }
 
   render() {
     return (
@@ -13,4 +16,12 @@ export class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setNotes: (notes) => dispatch(addNotes(notes))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
