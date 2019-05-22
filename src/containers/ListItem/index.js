@@ -4,7 +4,11 @@ export class ListItem extends Component {
   render() {
     return (
       <ul>
-        
+        { this.props.items.map(item =>(
+          <li key={item.id}>
+            {item}
+          </li>
+        ))}
       </ul>
     )
   }
