@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { addNotes } from '../../actions/'
 export class App extends Component {
 
-  componentDidMount() {
-
-  }
+  async componentDidMount() {
+    const response = await fetch('http://localhost:3000/api/v1/notes');
+    const notes = await response.json();
+    this.props.setNotes(notes.notes)
+  } 
 
   render() {
     return (
