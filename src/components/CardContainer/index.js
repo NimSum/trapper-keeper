@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import NoteCard from '../../containers/NoteCard';
 
 export const CardContainer = ({ notes }) => (
   <section className="notes-container">
     { notes.map(note => {
-      return <h2>{note.title}</h2>
+      return < NoteCard 
+        { ...note } 
+        key={note.id} />
     })}
   </section>
 )

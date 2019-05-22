@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class index extends Component {
+export class NoteCard extends Component {
   render() {
     return (
       <article>
@@ -10,4 +10,4 @@ export class index extends Component {
   }
 }
 
-export default index
+export default NoteCard;
