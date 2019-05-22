@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addNotes } from '../../actions/';
+import CardContainer from '../../components/CardContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+
+  async componentDidMount() {
+    const response = await fetch('http://localhost:3000/api/v1/notes');
+    const notes = await response.json();
+    this.props.setNotes(notes.notes)
+  } 
+
+  render() {
+    return (
+      <div>
+        <h1>Trapper Keeper</h1>
+        < CardContainer />
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setNotes: (notes) => dispatch(addNotes(notes))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
