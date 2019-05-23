@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 export class ListItem extends Component {
   constructor() {
@@ -15,7 +16,6 @@ export class ListItem extends Component {
 
   editItem = () => {
     this.setState({ editable: true })
-    console.log(this.state)
   }
 
   handleChange = ({ target }) => {
@@ -24,7 +24,26 @@ export class ListItem extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({ editable: false })
+    this.setState({ editable: false });
+    const { id, completed } = this.props.item;
+    const { body } = this.state;
+    this.props.updateListItems({
+      id,
+      completed,
+      body
+    })
+  }
+
+  checkItem = () => {
+    const { id, completed, body } = this.props.item;
+    this.props.updateListItems({
+      id,
+      completed: !completed,
+      body
+    })
+  }
+  
+  deleteItem = () => {
   }
   
   render() {
@@ -41,15 +60,24 @@ export class ListItem extends Component {
       </form>)
     return (
       <li 
-        key={ id }
-        onClick={ this.editItem }>
+        key={ id }>
         { this.state.editable 
             ? form
-            : this.state.body
+            : (
+              <div>
+                <button onClick={ this.checkItem }>done</button>
+                <p onClick={ this.editItem }>{this.state.body}</p>
+                <button onClick={ this.deleteItem }>x</button>
+              </div>
+              )
         }
       </li>
     )
   }
 }
 
-export default ListItem
+
+const mapDispatchToProps = dispatch => ({
+})
+
+export default connect(null, mapDispatchToProps)(ListItem);
