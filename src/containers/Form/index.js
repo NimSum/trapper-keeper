@@ -44,6 +44,10 @@ export class Form extends Component {
     this.props.addNewNote(newNote);
   }
 
+  handleClick = ({ target }) => {
+    console.log(target);
+  }
+
   render() {
     return (
       <div>
@@ -56,7 +60,8 @@ export class Form extends Component {
         </div>
         <div>
           {this.state.listItems.map(item => (
-            < ListItem item={ item } />
+            < ListItem 
+              item={ item } />
           ))}
         </div>
         <form onSubmit={ this.handleSubmit }>

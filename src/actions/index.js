@@ -7,3 +7,8 @@ export const addNote = note => ({
   type: 'ADD_NOTE',
   note
 })
+
+export const updateListItem = listItem => ({
+  type: 'UPDATE_LIST_ITEM',
+  listItem
+})

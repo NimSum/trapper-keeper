@@ -15,7 +15,6 @@ export class ListItem extends Component {
 
   editItem = () => {
     this.setState({ editable: true })
-    console.log(this.state)
   }
 
   handleChange = ({ target }) => {
