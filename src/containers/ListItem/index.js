@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { updateListItem } from '../../actions/index';
+import { updateListItemBody } from '../../actions/index';
 
 export class ListItem extends Component {
   constructor() {
@@ -25,7 +25,14 @@ export class ListItem extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({ editable: false })
+    this.setState({ editable: false });
+    const { id, completed } = this.props.item;
+    const { body } = this.state;
+    this.props.updateItem({
+      id,
+      completed,
+      body
+    })
   }
   
   render() {
@@ -55,7 +62,7 @@ export class ListItem extends Component {
 
 
 const mapDispatchToProps = dispatch => ({
-  updateListItem: listItem => dispatch(updateListItem(listItem))
+  updateItem: listItem => dispatch(updateListItemBody(listItem))
 })
 
 export default connect(null, mapDispatchToProps)(ListItem);
