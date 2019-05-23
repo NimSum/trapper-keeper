@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { updateListItem } from '../../actions/index';
 
 export class ListItem extends Component {
   constructor() {
@@ -51,4 +53,9 @@ export class ListItem extends Component {
   }
 }
 
-export default ListItem
+
+const mapDispatchToProps = dispatch => ({
+  updateListItem: listItem => dispatch(updateListItem(listItem))
+})
+
+export default connect(null, mapDispatchToProps)(ListItem);
