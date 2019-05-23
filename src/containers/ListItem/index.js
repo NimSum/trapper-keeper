@@ -43,6 +43,9 @@ export class ListItem extends Component {
     })
   }
   
+  deleteItem = () => {
+  }
+  
   render() {
     const { id } = this.props.item;
     const form = (
@@ -64,6 +67,7 @@ export class ListItem extends Component {
               <div>
                 <button onClick={ this.checkItem }>done</button>
                 <p onClick={ this.editItem }>{this.state.body}</p>
+                <button onClick={ this.deleteItem }>x</button>
               </div>
               )
         }
