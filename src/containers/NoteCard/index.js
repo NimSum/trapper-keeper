@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom'
 
 export class NoteCard extends Component {
 
+  updateNoteCard = () => {
+
+  }
+
   render() {
     const listItems = this.props.listItems.map(item => (
-      < ListItem item={ item } />
+      < ListItem 
+        item={ item }
+        updateNoteCard={ this.updateNoteCard } />
     ))
 
     return (
