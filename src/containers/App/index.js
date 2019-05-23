@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom'
 import { addNotes } from '../../actions/';
 import CardContainer from '../../components/CardContainer';
-
+import Form from '../Form'
 export class App extends Component {
 
   async componentDidMount() {
@@ -16,6 +17,7 @@ export class App extends Component {
       <div>
         <h1>Trapper Keeper</h1>
         < CardContainer />
+        <Route path='/new-note' component={Form} />
       </div>
     )
   }
