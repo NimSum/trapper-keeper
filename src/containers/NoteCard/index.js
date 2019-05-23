@@ -10,7 +10,7 @@ export class NoteCard extends Component {
     ))
 
     return (
-      <Link to={`/notes/${this.props.id}`}>
+      <Link to={`/notes/${this.props.id}`} style={{ textDecoration: 'none'}}>
         <article className='note-card'>
           <h3>{this.props.title}</h3>
           <ul className='note-items'>
