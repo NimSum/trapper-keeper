@@ -28,7 +28,7 @@ export class ListItem extends Component {
     this.setState({ editable: false });
     const { id, completed } = this.props.item;
     const { body } = this.state;
-    this.props.updateItem({
+    this.props.updateNotecard({
       id,
       completed,
       body

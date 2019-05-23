@@ -6,7 +6,7 @@ export const CardContainer = ({ notes }) => (
   <section className="notes-container">
     { notes.map(note => {
       return < NoteCard 
-        { ...note } 
+        note={ note } 
         key={note.id} />
     })}
   </section>
