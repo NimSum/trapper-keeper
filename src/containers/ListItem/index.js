@@ -12,7 +12,13 @@ export class ListItem extends Component {
   componentDidMount() {
     this.setState({ body: this.props.item.body })
   }
-  
+
+  editItem = () => {
+    this.setState({ editable: true })
+    console.log(this.state)
+  }
+
+
   render() {
     const { id } = this.props.item;
     const form = (
