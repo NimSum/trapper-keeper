@@ -8,7 +8,7 @@ export const addNote = note => ({
   note
 })
 
-export const updateListItemBody = listItem => ({
-  type: 'UPDATE_LIST_ITEM_BODY',
-  listItem
+export const updateNote = note => ({
+  type: 'UPDATE_NOTE',
+  note
 })

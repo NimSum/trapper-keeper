@@ -4,9 +4,12 @@ export const notesReducer = (state = [], action) => {
       return [...action.notes ]
     case 'ADD_NOTE':
       return [ {...action.note }, ...state ]
-    case 'UPDATE_LIST_ITEM_BODY':
+    case 'UPDATE_NOTE':
+      console.log(action.note);
       const updated = [...state].map(note => {
-        
+        if (note.id === action.note.id) {
+          return action.note;
+        }
         return note;
       })
       return updated;
