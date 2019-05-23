@@ -6,6 +6,7 @@ export class Form extends Component {
     super();
     this.state = {
       title: '',
+      listItemText: '',
       listItems: [
         { body: 'asdfasdf',
           id: 1 }
@@ -15,6 +16,17 @@ export class Form extends Component {
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value })
+  }
+  
+  handleSubmit = e => {
+    e.preventDefault();
+    const { title, listItemText } = this.state;
+    const newItem = { title, id: Date.now(), body: listItemText }
+      listItemText.length && this.setState({ 
+      listItems: [...this.state.listItems, newItem],
+      title: '',
+      listItemText: ''
+    })
   }
 
   render() {
@@ -32,6 +44,15 @@ export class Form extends Component {
             < ListItem item={ item } />
           ))}
         </div>
+        <form onSubmit={ this.handleSubmit }>
+          <input 
+            type="text" 
+            name="listItemText"
+            value={this.state.listItemText}
+            onChange={ this.handleChange }
+            onBlur={ this.handleSubmit }
+            autoFocus />
+        </form>
       </div>
     )
   }
