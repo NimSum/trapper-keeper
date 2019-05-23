@@ -11,9 +11,9 @@ export class NoteCard extends Component {
 
     return (
       <Link to={`/notes/${this.props.id}`}>
-        <article>
+        <article className='note-card'>
           <h3>{this.props.title}</h3>
-          <ul>
+          <ul className='note-items'>
             { listItems }
           </ul>
         </article>

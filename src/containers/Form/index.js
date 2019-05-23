@@ -24,7 +24,6 @@ export class Form extends Component {
     const newItem = { title, id: Date.now(), body: listItemText }
       listItemText.length && this.setState({ 
       listItems: [...this.state.listItems, newItem],
-      title: '',
       listItemText: ''
     })
   }
