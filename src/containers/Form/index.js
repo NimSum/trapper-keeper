@@ -3,6 +3,7 @@ import ListItem from '../ListItem';
 import { addNewNote } from '../../thunks/addNewNote';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import  uuidv4 from 'uuid/v4';
 
 export class Form extends Component {
   constructor() {
@@ -11,8 +12,11 @@ export class Form extends Component {
       title: '',
       listItemText: '',
       listItems: [
-        { body: 'asdfasdf',
-          id: 1 }
+        { 
+          body: 'asdfasdf',
+          id: 1,
+          completed: false
+        }
       ]
     };
   }
@@ -23,8 +27,8 @@ export class Form extends Component {
   
   handleSubmit = e => {
     e.preventDefault();
-    const { title, listItemText } = this.state;
-    const newItem = { title, id: Date.now(), body: listItemText }
+    const { listItemText } = this.state;
+    const newItem = { id: uuidv4(), body: listItemText, completed: false }
       listItemText.length && this.setState({ 
       listItems: [...this.state.listItems, newItem],
       listItemText: ''
@@ -32,7 +36,12 @@ export class Form extends Component {
   }
 
   addNote = () => {
-    
+    const { title, listItems } = this.state;
+    const newNote = {
+      title,
+      listItems
+    }
+    this.props.addNewNote(newNote);
   }
 
   render() {
