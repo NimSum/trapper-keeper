@@ -34,6 +34,15 @@ export class ListItem extends Component {
       body
     })
   }
+
+  checkItem = () => {
+    const { id, completed, body } = this.props.item;
+    this.props.updateListItems({
+      id,
+      completed: !completed,
+      body
+    })
+  }
   
   render() {
     const { id } = this.props.item;
@@ -49,11 +58,15 @@ export class ListItem extends Component {
       </form>)
     return (
       <li 
-        key={ id }
-        onClick={ this.editItem }>
+        key={ id }>
         { this.state.editable 
             ? form
-            : this.state.body
+            : (
+              <div>
+                <button onClick={ this.checkItem }>done</button>
+                <p onClick={ this.editItem }>{this.state.body}</p>
+              </div>
+              )
         }
       </li>
     )
