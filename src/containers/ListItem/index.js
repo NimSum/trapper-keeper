@@ -31,7 +31,8 @@ export class ListItem extends Component {
     const { id } = this.props.item;
     const form = (
       <form onSubmit={ this.handleSubmit }>
-        <input 
+        <input
+          className= 'list-item-input' 
           type="text" 
           value={this.state.body}
           onChange={ this.handleChange }
