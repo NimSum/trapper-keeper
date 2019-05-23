@@ -18,6 +18,10 @@ export class ListItem extends Component {
     console.log(this.state)
   }
 
+  handleChange = ({ target }) => {
+    this.setState({ body: target.value })
+  }
+
 
   render() {
     const { id } = this.props.item;
