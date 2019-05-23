@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import ListItem from '../ListItem';
+import { addNewNote } from '../../thunks/addNewNote';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 export class Form extends Component {
   constructor() {
@@ -57,4 +60,8 @@ export class Form extends Component {
   }
 }
 
-export default Form
+export const mapDispatchToProps = dispatch => ({
+  addNewNote: (note) => dispatch(addNewNote(note))
+})
+
+export default connect(null, mapDispatchToProps)(Form);

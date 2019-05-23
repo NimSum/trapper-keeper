@@ -4,14 +4,14 @@ export const postNewNote = async (note) => {
     method: "POST",
     body: JSON.stringify(note),
     headers: {
-      "Content-type": "application/json";
+      "Content-type": "application/json"
     }
   });
 
   if (!response) {
     throw Error('Failed to post new note');
   }
-  
+
   const result = await response.json();
   return result;
 }
