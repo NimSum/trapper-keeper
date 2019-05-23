@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
 
 export class ListItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      body: ''
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ body: this.props.item.body })
+  }
+
   render() {
+    const { id } = this.props.item;
+
     return (
-      <ul>
-        { this.props.items.map(item =>(
-          <li key={item.id}>
-            {item.body}
-          </li>
-        ))}
-      </ul>
+      <li key={ id }>
+        {this.state.body}
+      </li>
     )
   }
 }
