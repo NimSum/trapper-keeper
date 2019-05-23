@@ -31,6 +31,10 @@ export class Form extends Component {
     })
   }
 
+  addNote = () => {
+    
+  }
+
   render() {
     return (
       <div>
@@ -55,6 +59,7 @@ export class Form extends Component {
             onBlur={ this.handleSubmit }
             autoFocus />
         </form>
+        <button onClick={ this.addNote }>Save</button>
       </div>
     )
   }
