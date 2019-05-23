@@ -22,7 +22,11 @@ export class ListItem extends Component {
     this.setState({ body: target.value })
   }
 
-
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({ editable: false })
+  }
+  
   render() {
     const { id } = this.props.item;
     const form = (
