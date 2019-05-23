@@ -13,15 +13,21 @@ export class NoteCard extends Component {
     this.setState({ ...this.props.note })
   }
 
-  updateNoteCard = () => {
-
+  updateListItems = (newItem) => {
+    // make updated note with list item
+    const updatedListItems = [...this.state.listItems].map(listItem => {
+      if (listItem.id === newItem.id) {
+        return newItem;
+      } else return listItem;
+    })
+    this.setState({ listItems: updatedListItems });
   }
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
       < ListItem 
         item={ item }
-        updateNoteCard={ this.updateNoteCard } />
+        updateListItems={ this.updateListItems } />
     ))
 
     return (
