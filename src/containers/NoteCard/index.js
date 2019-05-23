@@ -14,14 +14,20 @@ export class NoteCard extends Component {
     this.setState({ ...this.props.note })
   }
 
-  updateListItems = (newItem) => {
+  updateListItems = (newItem, remove) => {
     // make updated note with list item
-    const updatedListItems = [...this.state.listItems].map(listItem => {
-      if (listItem.id === newItem.id) {
-        return newItem;
-      } else return listItem;
-    })
-    this.setState({ listItems: updatedListItems }, () => 
+    let updateListItems;
+    if (remove) {
+      updateListItems = [...this.state.listItems].filter(listItem => listItem.id !== newItem.id);
+    } else {
+      updateListItems = [...this.state.listItems].map(listItem => {
+        if (listItem.id === newItem.id) {
+          return newItem;
+        } else return listItem;
+      })
+    } 
+
+    this.setState({ listItems: updateListItems }, () => 
       this.props.updateNote({...this.state})
     );
   }

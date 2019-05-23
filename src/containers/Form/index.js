@@ -44,8 +44,23 @@ export class Form extends Component {
     this.props.addNewNote(newNote);
   }
 
-  handleClick = ({ target }) => {
-    console.log(target);
+  updateListItems = (newItem, remove) => {
+    //console.log(newItem);
+    let updatedListItems;
+    if (remove) {
+      updatedListItems = this.state.listItems.filter(listItem => {
+        console.log(listItem.id, newItem.id)
+        return listItem.id !== newItem.id
+      });
+    } else {
+      updatedListItems = [...this.state.listItems].map(listItem => {
+        if (listItem.id === newItem.id) {
+          return newItem;
+        } else return listItem;
+      })
+    } 
+    // console.log(updatedListItems);
+    this.setState({ listItems: updatedListItems }, () => console.log(this.state.listItems));
   }
 
   render() {
@@ -59,10 +74,13 @@ export class Form extends Component {
             onChange={ this.handleChange } /> 
         </div>
         <div>
-          {this.state.listItems.map(item => (
+          {this.state.listItems.map(item => {
+            console.log(item.body)
+            return (
             < ListItem 
-              item={ item } />
-          ))}
+              item={ item }
+              updateListItems={ this.updateListItems } />
+          )})}
         </div>
         <form onSubmit={ this.handleSubmit }>
           <input 
