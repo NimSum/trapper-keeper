@@ -32,6 +32,10 @@ export class NoteCard extends Component {
     );
   }
 
+  deleteNote = () => {
+    
+  }
+
   render() {
     const listItems = this.props.note.listItems.map(item => (
       < ListItem 
@@ -46,6 +50,7 @@ export class NoteCard extends Component {
           <ul className='note-items'>
             { listItems }
           </ul>
+          <button className="delete-card" onClick={this.deleteNote}>X</button>
         </article>
       </Link>
     )
