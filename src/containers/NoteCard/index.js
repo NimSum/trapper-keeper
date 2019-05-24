@@ -3,6 +3,7 @@ import ListItem from '../../containers/ListItem';
 import { Link } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
+import {deleteNote} from '../../utils/apiFetches/deleteNote';
 export class NoteCard extends Component {
   constructor() {
     super();
@@ -33,7 +34,7 @@ export class NoteCard extends Component {
   }
 
   deleteNote = () => {
-    
+
   }
 
   render() {
