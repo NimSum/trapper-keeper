@@ -43,7 +43,7 @@ export class ListItem extends Component {
     })
   }
   
-  deleteItem = () => {
+  deleteItem =  () => {
     this.props.updateListItems({...this.props.item}, true)
   }
   
@@ -68,7 +68,7 @@ export class ListItem extends Component {
             : (
               <div className="item-container">
                 <button onClick={ this.checkItem }>done</button>
-                <p onClick={ this.editItem }>{this.state.body}</p>
+                <p onClick={ this.editItem }>{this.props.item.body || this.state.body}</p>
                 <button onClick={ this.deleteItem }>x</button>
               </div>
               )

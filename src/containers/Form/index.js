@@ -11,13 +11,7 @@ export class Form extends Component {
     this.state = {
       title: '',
       listItemText: '',
-      listItems: [
-        { 
-          body: 'asdfasdf',
-          id: 1,
-          completed: false
-        }
-      ]
+      listItems: []
     };
   }
 
@@ -45,11 +39,9 @@ export class Form extends Component {
   }
 
   updateListItems = (newItem, remove) => {
-    //console.log(newItem);
     let updatedListItems;
     if (remove) {
       updatedListItems = this.state.listItems.filter(listItem => {
-        console.log(listItem.id, newItem.id)
         return listItem.id !== newItem.id
       });
     } else {
@@ -59,8 +51,7 @@ export class Form extends Component {
         } else return listItem;
       })
     } 
-    // console.log(updatedListItems);
-    this.setState({ listItems: updatedListItems }, () => console.log(this.state.listItems));
+    this.setState({ listItems: updatedListItems });
   }
 
   render() {
@@ -75,9 +66,8 @@ export class Form extends Component {
         </div>
         <div>
           {this.state.listItems.map(item => {
-            console.log(item.body)
             return (
-            < ListItem 
+            <ListItem 
               item={ item }
               updateListItems={ this.updateListItems } />
           )})}
