@@ -33,8 +33,12 @@ export class NoteCard extends Component {
     );
   }
 
-  deleteNote = () => {
-
+  deleteNote = async() => {
+    try{
+      deleteNote(this.props.note.id);
+    }catch(error){
+      console.log('deleteNote', error)
+    }
   }
 
   render() {
@@ -60,6 +64,7 @@ export class NoteCard extends Component {
 
 const mapDispatchToProps = dispatch => ({
   updateNote: note => dispatch(updateNote(note))
+
 })
 
 export default connect(null, mapDispatchToProps)(NoteCard);
