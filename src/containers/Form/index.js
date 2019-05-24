@@ -11,8 +11,17 @@ export class Form extends Component {
     this.state = {
       title: '',
       listItemText: '',
-      listItems: []
+      listItems: [],
+      editing: false,
+      id: ''
     };
+  }
+
+  componentDidMount() {
+    if(this.props.foundNote) {
+      const { id, title, listItems } = this.props.foundNote;
+      this.setState({ id, title, listItems, editing: true })
+    }
   }
 
   handleChange = ({ target }) => {
