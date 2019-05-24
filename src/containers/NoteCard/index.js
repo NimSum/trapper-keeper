@@ -38,7 +38,7 @@ export class NoteCard extends Component {
     const {id} = this.props.note
     console.log(id, 'Testing delete')
     try{
-      deleteNote(id);
+      deleteNoteFetch(id);
       this.props.removeNote(id)
     }catch(error){
       console.log('deleteNote', error)
