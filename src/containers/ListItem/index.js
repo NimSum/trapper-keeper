@@ -44,10 +44,12 @@ export class ListItem extends Component {
   }
   
   deleteItem = () => {
+    this.props.updateListItems({...this.props.item}, true)
   }
   
   render() {
     const { id } = this.props.item;
+    
     const form = (
       <form onSubmit={ this.handleSubmit }>
         <input
@@ -64,7 +66,7 @@ export class ListItem extends Component {
         { this.state.editable 
             ? form
             : (
-              <div>
+              <div className="item-container">
                 <button onClick={ this.checkItem }>done</button>
                 <p onClick={ this.editItem }>{this.state.body}</p>
                 <button onClick={ this.deleteItem }>x</button>
