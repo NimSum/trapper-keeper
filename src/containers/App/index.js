@@ -18,14 +18,18 @@ export class App extends Component {
         <h1>Trapper Keeper</h1>
         < CardContainer />
         <Route path='/new-note' component={Form} />
-        <Route path='/notes/:id' component={Form} />
+        <Route path='/notes/:id' render={({ match }) => {
+          const { id } = match.params;
+          const foundNote = this.props.notes.find(note => note.id === id);
+          return (< Form foundNote={foundNote} />)
+        }} />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-
+  notes: state.notes
 })
 
 const mapDispatchToProps = (dispatch) => ({
