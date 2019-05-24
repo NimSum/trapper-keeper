@@ -38,7 +38,7 @@ export class NoteCard extends Component {
     const {id} = this.props.note
     console.log(id, 'Testing delete')
     try{
-      deleteNote(id);
+      deleteNoteFetch(id);
       this.props.removeNote(id)
     }catch(error){
       console.log('deleteNote', error)
@@ -47,13 +47,13 @@ export class NoteCard extends Component {
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
-      < ListItem 
-        item={ item }
-        updateListItems={ this.updateListItems } />
+      <p>
+        { item.body }
+      </p>
     ))
 
     return (
-      <Link to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}}>
+      <Link exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}}>
         <article className='note-card'>
           <h3>{this.props.note.title}</h3>
           <ul className='note-items'>
