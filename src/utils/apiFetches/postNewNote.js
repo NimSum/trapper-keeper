@@ -8,7 +8,7 @@ export const postNewNote = async (note) => {
     }
   });
 
-  if (!response) {
+  if (!response.ok) {
     throw Error('Failed to post new note');
   }
 

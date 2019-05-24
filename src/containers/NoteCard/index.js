@@ -3,6 +3,7 @@ import ListItem from '../../containers/ListItem';
 import { Link } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
+import {deleteNote} from '../../utils/apiFetches/deleteNote';
 export class NoteCard extends Component {
   constructor() {
     super();
@@ -32,6 +33,14 @@ export class NoteCard extends Component {
     );
   }
 
+  deleteNote = async() => {
+    try{
+      deleteNote(this.props.note.id);
+    }catch(error){
+      console.log('deleteNote', error)
+    }
+  }
+
   render() {
     const listItems = this.props.note.listItems.map(item => (
       < ListItem 
@@ -46,6 +55,7 @@ export class NoteCard extends Component {
           <ul className='note-items'>
             { listItems }
           </ul>
+          <button className="delete-card" onClick={this.deleteNote}>X</button>
         </article>
       </Link>
     )
@@ -53,7 +63,9 @@ export class NoteCard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNote: note => dispatch(updateNote(note))
+  updateNote: note => dispatch(updateNote(note)),
+  deleteNote: id=> dispatch(deleteNote(id))
+
 })
 
 export default connect(null, mapDispatchToProps)(NoteCard);
