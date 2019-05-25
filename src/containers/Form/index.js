@@ -24,6 +24,14 @@ export class Form extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, prevState) {
+    if(nextProps.foundNote.id !== prevState.id) {
+      const { id, title, listItems } = this.props.foundNote;
+      this.setState({ id, title, listItems, editing: true })
+      return false;
+    } else return true;
+  }
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value })
   }
@@ -71,6 +79,7 @@ export class Form extends Component {
             placeholder='Title' 
             type='text'
             name='title'
+            value={ this.state.title }
             onChange={ this.handleChange } /> 
         </div>
         <div>
