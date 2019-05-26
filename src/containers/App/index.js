@@ -16,13 +16,13 @@ export class App extends Component {
     return (
       <div>
         <h1>Trapper Keeper</h1>
-        < CardContainer />
         <Route path='/new-note' component={Form} />
         <Route path='/notes/:id' render={({ match }) => {
           const { id } = match.params;
           const foundNote = this.props.notes.find(note => note.id === id);
           return < Form foundNote={foundNote} />
         }} />
+        < CardContainer />
       </div>
     )
   }

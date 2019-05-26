@@ -62,6 +62,7 @@ export class ListItem extends Component {
       </form>)
     return (
       <li 
+        className='list-item'
         key={ id }>
         { this.state.editable 
             ? form

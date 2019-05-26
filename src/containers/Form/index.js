@@ -65,13 +65,15 @@ export class Form extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className='form-container'>
+        <div className='title-form'>
           <input 
             placeholder='Title' 
             type='text'
             name='title'
-            onChange={ this.handleChange } /> 
+            onChange={ this.handleChange } 
+            className='title'
+          /> 
         </div>
         <div>
           {this.state.listItems.map(item => {
