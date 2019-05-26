@@ -4,6 +4,7 @@ import { addNewNote } from '../../thunks/addNewNote';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import  uuidv4 from 'uuid/v4';
+import { putNote } from '../../utils/apiFetches/putNote';
 
 export class Form extends Component {
   constructor() {
@@ -24,12 +25,12 @@ export class Form extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, prevState) {
-    if(nextProps.foundNote.id !== prevState.id) {
-      const { id, title, listItems } = this.props.foundNote;
-      this.setState({ id, title, listItems, editing: true })
-      return false;
-    } else return true;
+  static getDerivedStateFromProps(props, state) {
+    if (!props.foundNote) return null;
+    if (props.foundNote.id !== state.id) {
+      const { id, title, listItems } = props.foundNote;
+      return { id, title, listItems, editing: true }
+    } else return null;
   }
 
   handleChange = ({ target }) => {
@@ -44,6 +45,10 @@ export class Form extends Component {
       listItems: [...this.state.listItems, newItem],
       listItemText: ''
     })
+  }
+
+  editNote = () => {
+
   }
 
   addNote = () => {

@@ -1,5 +1,5 @@
-export const putNote = async (id, note) => {
-  const url = `http://localhost:3000/api/v1/notes/${id}`;
+export const putNote = async (note) => {
+  const url = `http://localhost:3000/api/v1/notes/${note.id}`;
   const response = await fetch(url, {
     method: 'PUT',
     body: JSON.stringify(note),
