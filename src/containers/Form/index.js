@@ -47,8 +47,13 @@ export class Form extends Component {
     })
   }
 
-  editNote = () => {
-
+  editNote = async () => {
+    const { id, listItems, title} = this.state;
+    try {
+      await putNote({ id, listItems, title });
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   addNote = () => {
@@ -104,7 +109,7 @@ export class Form extends Component {
             onBlur={ this.handleSubmit }
             autoFocus />
         </form>
-        <button onClick={ this.addNote }>Save</button>
+        <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() }>Save</button>
       </div>
     )
   }
