@@ -48,6 +48,12 @@ describe('actions', () => {
         expect(results.type).toBe(expected);
     })
 
+    it('should should have a property of notes', () => {
+        const expected = mockNotes;
+        const results = actions.addNotes(mockNotes);
+        expect(results.notes).toBe(expected);
+    })
+
 
 
 
