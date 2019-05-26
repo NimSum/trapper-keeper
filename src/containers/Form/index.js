@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ListItem from '../ListItem';
 import { addNewNote } from '../../thunks/addNewNote';
 import { connect } from 'react-redux';
+import { updateNote } from '../../actions/index';
 import { PropTypes } from 'prop-types';
 import  uuidv4 from 'uuid/v4';
 import { putNote } from '../../utils/apiFetches/putNote';
@@ -51,6 +52,7 @@ export class Form extends Component {
     const { id, listItems, title} = this.state;
     try {
       await putNote({ id, listItems, title });
+      this.props.updateExistingNote({ id, listItems, title });
     } catch(error) {
       console.log(error)
     }
@@ -117,7 +119,8 @@ export class Form extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  addNewNote: (note) => dispatch(addNewNote(note))
+  addNewNote: (note) => dispatch(addNewNote(note)),
+  updateExistingNote: (note) => dispatch(updateNote(note))
 })
 
 export default connect(null, mapDispatchToProps)(Form);

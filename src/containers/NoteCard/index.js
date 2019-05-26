@@ -47,7 +47,7 @@ export class NoteCard extends Component {
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
-      <p>
+      <p className={ item.completed ? 'completed-item list-item' : 'list-item'}>
         { item.body }
       </p>
     ))
