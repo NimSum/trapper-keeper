@@ -66,9 +66,9 @@ export class ListItem extends Component {
         { this.state.editable 
             ? form
             : (
-              <div onClick={ this.editItem } className="item-container">
+              <div className="item-container">
                 <button onClick={ this.checkItem }>done</button>
-                <p onClick={ this.checkItem }>{this.props.item.body || this.state.body }</p>
+                <p onClick={ this.editItem }>{this.props.item.body || this.state.body }</p>
                 <button onClick={ this.deleteItem }>x</button>
               </div>
               )

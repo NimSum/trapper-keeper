@@ -47,9 +47,10 @@ export class NoteCard extends Component {
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
-      <p className={ item.completed ? 'completed-item list-item' : 'list-item'}>
-        { item.body }
-      </p>
+      < ListItem updateListItems={ this.updateListItems } item={ item } />
+      // <p className={ item.completed ? 'completed-item list-item' : 'list-item'}>
+      //   { item.body }
+      // </p>
     ))
 
     return (
@@ -69,7 +70,6 @@ export class NoteCard extends Component {
 const mapDispatchToProps = dispatch => ({
   updateNote: note => dispatch(updateNote(note)),
   removeNote: id=> dispatch(deleteNote(id))
-
 })
 
 export default connect(null, mapDispatchToProps)(NoteCard);
