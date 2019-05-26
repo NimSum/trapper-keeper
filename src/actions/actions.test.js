@@ -87,6 +87,11 @@ describe('DELETE_NOTE', () => {
         expect(results.type).toBe(expected);
 
     })
+    it("should have a property of id", () => {
+        const expected = '1';
+        const results = actions.deleteNote('1');
+        expect(results.id).toEqual(expected)
+    })
     
 })
 
