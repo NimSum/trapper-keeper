@@ -45,6 +45,14 @@ describe("postNewNote fetch", () => {
         const result = await postNewNote(mockNote)
         // await window.fetch(mockURL, mockInit)
         expect(result.newNote).toEqual(mockNote)
+    });
+
+    it('should throw an error if it failed to post a new note', async () => {
+        window.fetch = () => Promise.resolve({ ok: false })
+        const expected = Error('Failed to post new note')
+        const result = await postNewNote(mockNote);
+        expect(result).toEqual(expected);
+
     })
 
 
