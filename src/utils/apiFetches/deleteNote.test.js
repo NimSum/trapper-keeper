@@ -10,12 +10,17 @@ describe('deleteNote fetch', () => {
             method: 'DELETE'
         }
         window.fetch = jest.fn().mockImplementation(() => 
-        Promise.resolve({ ok:true}))
-    })
+        Promise.resolve({ ok:true, statusText: 204}))
+    });
+
     it("should be called with correct URL", async() => {
         await deleteNoteFetch('1');
         expect(window.fetch).toHaveBeenCalledWith(mockURL, mockInit);
-        
+    });
+
+    it("should return a response with a status of 204", async() => {
+        const result = await deleteNoteFetch('1');
+        expect(result.statusText).toBe(204)
     })
 
 
