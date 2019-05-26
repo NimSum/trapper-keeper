@@ -9,6 +9,7 @@ export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
+
     }
   }
 
@@ -17,7 +18,6 @@ export class NoteCard extends Component {
   }
 
   updateListItems = (newItem, remove) => {
-    // make updated note with list item
     let updateListItems;
     if (remove) {
       updateListItems = [...this.state.listItems].filter(listItem => listItem.id !== newItem.id);
@@ -47,10 +47,9 @@ export class NoteCard extends Component {
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
-      < ListItem updateListItems={ this.updateListItems } item={ item } />
-      // <p className={ item.completed ? 'completed-item list-item' : 'list-item'}>
-      //   { item.body }
-      // </p>
+      < ListItem 
+        updateListItems={ this.updateListItems } 
+        item={ item } />
     ))
 
     return (

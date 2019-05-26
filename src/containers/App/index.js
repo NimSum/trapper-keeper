@@ -22,7 +22,7 @@ export class App extends Component {
           const { id } = match.params;
           const foundNote = this.props.notes.find(note => note.id === id);
           if (foundNote) {
-            return < Form foundNote={foundNote} />
+            return < Form foundNote={foundNote}/>
           }
         }} />
       </div>

@@ -100,6 +100,7 @@ export class Form extends Component {
             return (
             <ListItem 
               item={ item }
+              editing={ this.state.editing }
               updateListItems={ this.updateListItems } />
           )})}
         </div>
