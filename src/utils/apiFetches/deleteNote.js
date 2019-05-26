@@ -6,7 +6,7 @@ export const deleteNoteFetch = async(id)=>{
         })
 
         if(!response.ok){
-            throw new Error (response.status)
+            throw Error (response.statusText)
         }
 
         return response;

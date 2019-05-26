@@ -21,7 +21,14 @@ describe('deleteNote fetch', () => {
     it("should return a response with a status of 204", async() => {
         const result = await deleteNoteFetch('1');
         expect(result.statusText).toBe(204)
-    })
+    });
 
-
+    it("should return a response of with a status of 404 or and error message of no notes found", async() => {
+        window.fetch = jest.fn().mockImplementation(() => 
+        Promise.resolve({ ok:false, statusText:'No notes found'}))
+        const expected = Error('No notes found')
+        const result = await deleteNoteFetch('1');
+    
+        expect(result).toEqual(expected);
+    });
 })
