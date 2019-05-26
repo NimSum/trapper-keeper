@@ -6,6 +6,7 @@ import { updateNote } from '../../actions/index';
 import { PropTypes } from 'prop-types';
 import  uuidv4 from 'uuid/v4';
 import { putNote } from '../../utils/apiFetches/putNote';
+import {Redirect} from 'react-router-dom';
 
 export class Form extends Component {
   constructor() {
@@ -15,7 +16,8 @@ export class Form extends Component {
       listItemText: '',
       listItems: [],
       editing: false,
-      id: ''
+      id: '',
+      redirect: false
     };
   }
 
@@ -48,6 +50,8 @@ export class Form extends Component {
     })
   }
 
+
+
   editNote = async () => {
     const { id, listItems, title} = this.state;
     try {
@@ -56,9 +60,9 @@ export class Form extends Component {
     } catch(error) {
       console.log(error)
     }
-    this.setState({ editing: false, title: '', listItems: [] })
+    await this.setState({ editing: false, title: '', listItems: [], redirect: true })
   }
-
+  
   addNote = () => {
     const { title, listItems } = this.state;
     const newNote = {
@@ -92,6 +96,10 @@ export class Form extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className='form-container'>
         <div className='title-form'>
@@ -122,7 +130,7 @@ export class Form extends Component {
             onBlur={ this.handleSubmit }
             autoFocus />
         </form>
-        <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() }>Save</button>
+          <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() }>Save</button>      
       </div>
     )
   }
