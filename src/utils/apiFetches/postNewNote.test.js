@@ -43,7 +43,6 @@ describe("postNewNote fetch", () => {
 
     it('should return the new note after posting', async () => {
         const result = await postNewNote(mockNote)
-        // await window.fetch(mockURL, mockInit)
         expect(result.newNote).toEqual(mockNote)
     });
 
