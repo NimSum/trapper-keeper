@@ -23,7 +23,7 @@ describe('deleteNote fetch', () => {
         expect(result.statusText).toBe(204)
     });
 
-    it("should return a response of with a status of 404 or and error message of no notes found", async() => {
+    it("should throw an error if reponse is not okay", async() => {
         window.fetch = jest.fn().mockImplementation(() => 
         Promise.resolve({ ok:false, statusText:'No notes found'}))
         const expected = Error('No notes found')
