@@ -80,10 +80,9 @@ it('should be able to update a note', () => {
         ]
     }
 
-    const expected = [mockNote, mockNotes[1], mockNotes[2]]
-    const result = notesReducer(mockNotes, actions.updateNote(mockNote));
-    expect(result).toEqual(expected);
-
+    const expected = mockNote
+    const result= notesReducer(mockNotes, actions.updateNote(mockNote));
+    expect(result[0]).toEqual(expected);
 })
 
 })
