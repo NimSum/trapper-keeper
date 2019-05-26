@@ -48,10 +48,10 @@ describe('actions', () => {
             expect(results.type).toBe(expected);
         });
     
-        it('should should have a property of notes', () => {
+        it('should have a property of notes', () => {
             const expected = mockNotes;
             const results = actions.addNotes(mockNotes);
-            expect(results.notes).toBe(expected);
+            expect(results.notes).toEqual(expected);
         });
     })
 
@@ -59,9 +59,15 @@ describe('actions', () => {
         it('should create an action object with a type of ADD_NOTE', () => {
             const expected = 'ADD_NOTE';
             const results = actions.addNote(mockNotes[0]);
-            expect(results.type).toBe(expected);
-            
+            expect(results.type).toBe(expected); 
         });
+
+        it('should have a property of note', () => {
+            const expected = mockNotes[0];
+            const results = actions.addNote(mockNotes[0]);
+            expect(results.note).toEqual(expected)
+
+        })
 
 
     })
