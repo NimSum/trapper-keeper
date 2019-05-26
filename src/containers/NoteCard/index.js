@@ -5,6 +5,8 @@ import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
 import { deleteNote } from '../../actions';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
+import { putNote } from '../../utils/apiFetches/putNote';
+
 export class NoteCard extends Component {
   constructor() {
     super();
@@ -27,11 +29,19 @@ export class NoteCard extends Component {
           return newItem;
         } else return listItem;
       })
-    } 
+    }
+    this.updateStateAndDatabase(updateListItems);
+  }
 
-    this.setState({ listItems: updateListItems }, () => 
+  updateStateAndDatabase(updatedItems) {
+    this.setState({ listItems: updatedItems }, async () => {
       this.props.updateExistingNote({...this.state})
-    );
+      try {
+        await putNote({ ...this.state })
+      } catch(error) {
+        console.log(error);
+      }
+    });
   }
 
   deleteNote = async() => {
