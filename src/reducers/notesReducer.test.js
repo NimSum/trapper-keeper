@@ -55,5 +55,11 @@ it('should be able to add notes', () => {
     expect(result).toEqual(expected);    
 })
 
+it('should be able to add a single note', () => {
+    const expected = [mockNotes[0], ...mockNotes];
+    const result = notesReducer(mockNotes, actions.addNote(mockNotes[0]));
+    expect(result).toEqual(expected);
+})
+
 
 })
