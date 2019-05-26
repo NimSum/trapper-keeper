@@ -54,6 +54,7 @@ export class Form extends Component {
     } catch(error) {
       console.log(error)
     }
+    this.setState({ editing: false })
   }
 
   addNote = () => {
