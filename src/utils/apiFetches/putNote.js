@@ -7,10 +7,9 @@ export const putNote = async (note) => {
       "Content-type": "application/json"
     }
   })
-
   if (!response.ok) {
     throw Error('Failed to update note');
   }
 
-  return response;
+  return response.json();
 }

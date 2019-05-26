@@ -33,7 +33,8 @@ describe("putNote fetch", () => {
       ok: true,
       json: () =>
         Promise.resolve({
-          newNote: mockNote
+            statusCode: 202,
+            newNote: mockNote
         })
     })
   );
@@ -41,10 +42,15 @@ describe("putNote fetch", () => {
 
   });
 
-  it("should call fetch with the correct param", () => {
-      putNote(mockNote);
+  it("should call fetch with the correct param", async() => {
+      await putNote(mockNote);
       expect(window.fetch).toHaveBeenCalledWith(mockURL, mockInit);
   });
+
+  it("should return a response object with a status 202 and will also returns a new updated note", async () => {
+    const result = await putNote(mockNote);
+    expect(result.statusCode).toBe(202);
+  })
 
 
 });
