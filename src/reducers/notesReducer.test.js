@@ -7,28 +7,28 @@ describe('notesReducer', () => {
 
     beforeEach(()=>{
         mockNotes = [
-            // {
-            //     "title": "randomnote",
-            //     "id": "1",
-            //     "listItems": [
-            //         {
-            //             "id": "1",
-            //             "body": "asdf",
-            //             "completed": false
-            //         }
-            //     ]
-            // },
-            // {
-            //     "title": "randomnoteTWO",
-            //     "id": "2",
-            //     "listItems": [
-            //         {
-            //             "id": "2",
-            //             "body": "asdf",
-            //             "completed": false
-            //         }
-            //     ]
-            // },
+            {
+                "title": "randomnote",
+                "id": "1",
+                "listItems": [
+                    {
+                        "id": "1",
+                        "body": "asdf",
+                        "completed": false
+                    }
+                ]
+            },
+            {
+                "title": "randomnoteTWO",
+                "id": "2",
+                "listItems": [
+                    {
+                        "id": "2",
+                        "body": "asdf",
+                        "completed": false
+                    }
+                ]
+            },
             {
                 "id": "21f67edd-ec5a-4ab4-8b9e-18fa1326a70e",
                 "title": "Angry Man",
@@ -41,7 +41,8 @@ describe('notesReducer', () => {
                 ]
             }
         ]
-    })
+    });
+
 it('should return a default state', () => {
     const expected = [];
     const result = notesReducer(undefined, {})
@@ -50,11 +51,8 @@ it('should return a default state', () => {
 
 it('should be able to add notes', () => {
     const expected = mockNotes;
-    const result = notesReducer(undefined, actions.addNote(mockNotes));
-    expect(result).toDeepEqual(expected);
-
-
-    
+    const result = notesReducer(undefined, actions.addNotes(mockNotes));
+    expect(result).toEqual(expected);    
 })
 
 
