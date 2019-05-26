@@ -67,5 +67,23 @@ it('should be able to delete a single note', () => {
     expect(result).toEqual(expected);
 });
 
+it('should be able to update a note', () => {
+    const mockNote =  {
+        "title": "randomnote",
+        "id": "1",
+        "listItems": [
+            {
+                "id": "1",
+                "body": "Brennan!",
+                "completed": false
+            }
+        ]
+    }
+
+    const expected = [mockNote, mockNotes[1], mockNotes[2]]
+    const result = notesReducer(mockNotes, actions.updateNote(mockNote));
+    expect(result).toEqual(expected);
+
+})
 
 })
