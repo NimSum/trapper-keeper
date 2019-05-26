@@ -60,7 +60,4 @@ describe("addNewNote Thunk", () => {
         await thunk(mockDispatch);
         expect(mockDispatch).toHaveBeenCalledWith(actions.addNote(mockNotes[0]));
     })
-
-
-
 })
