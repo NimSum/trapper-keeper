@@ -3,12 +3,15 @@ import ListItem from '../../containers/ListItem';
 import { Link } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
-import {deleteNote} from '../../actions';
-import {deleteNoteFetch} from '../../utils/apiFetches/deleteNote';
+import { deleteNote } from '../../actions';
+import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
+import { putNote } from '../../utils/apiFetches/putNote';
+
 export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
+
     }
   }
 
@@ -17,7 +20,6 @@ export class NoteCard extends Component {
   }
 
   updateListItems = (newItem, remove) => {
-    // make updated note with list item
     let updateListItems;
     if (remove) {
       updateListItems = [...this.state.listItems].filter(listItem => listItem.id !== newItem.id);
@@ -27,11 +29,19 @@ export class NoteCard extends Component {
           return newItem;
         } else return listItem;
       })
-    } 
+    }
+    this.updateStateAndDatabase(updateListItems);
+  }
 
-    this.setState({ listItems: updateListItems }, () => 
-      this.props.updateNote({...this.state})
-    );
+  updateStateAndDatabase(updatedItems) {
+    this.setState({ listItems: updatedItems }, async () => {
+      this.props.updateExistingNote({...this.state})
+      try {
+        await putNote({ ...this.state })
+      } catch(error) {
+        console.log(error);
+      }
+    });
   }
 
   deleteNote = async() => {
@@ -47,9 +57,9 @@ export class NoteCard extends Component {
 
   render() {
     const listItems = this.props.note.listItems.map(item => (
-      <p>
-        { item.body }
-      </p>
+      < ListItem 
+        updateListItems={ this.updateListItems } 
+        item={ item } />
     ))
 
     return (
@@ -67,9 +77,8 @@ export class NoteCard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNote: note => dispatch(updateNote(note)),
+  updateExistingNote: note => dispatch(updateNote(note)),
   removeNote: id=> dispatch(deleteNote(id))
-
 })
 
 export default connect(null, mapDispatchToProps)(NoteCard);

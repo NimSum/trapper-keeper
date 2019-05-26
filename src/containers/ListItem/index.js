@@ -48,8 +48,8 @@ export class ListItem extends Component {
   }
   
   render() {
-    const { id } = this.props.item;
-    
+    const { id, completed } = this.props.item;
+    console.log(this.props.editing)
     const form = (
       <form onSubmit={ this.handleSubmit }>
         <input
@@ -68,8 +68,17 @@ export class ListItem extends Component {
             ? form
             : (
               <div className="item-container">
-                <button onClick={ this.checkItem }>done</button>
-                <p onClick={ this.editItem }>{this.props.item.body || this.state.body}</p>
+                <button 
+                  onClick={ this.checkItem }>
+                  done
+                </button>
+                <p 
+                  onClick={ this.props.editing && this.editItem }
+                  className={ completed 
+                    ? 'completed-item list-item' 
+                    : 'list-item'}>    
+                    {this.props.item.body || this.state.body }
+                </p>
                 <button onClick={ this.deleteItem }>x</button>
               </div>
               )

@@ -20,7 +20,9 @@ export class App extends Component {
         <Route path='/notes/:id' render={({ match }) => {
           const { id } = match.params;
           const foundNote = this.props.notes.find(note => note.id === id);
-          return < Form foundNote={foundNote} />
+          if (foundNote) {
+            return < Form foundNote={foundNote}/>
+          }
         }} />
         < CardContainer />
       </div>

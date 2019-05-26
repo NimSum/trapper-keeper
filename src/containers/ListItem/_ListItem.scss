@@ -3,8 +3,14 @@
 }
 
 .item-container {
+
 }
 
 .list-item {
   list-style: none;
+  border: 1px dashed black;
+}
+
+.completed-item {
+  text-decoration: line-through;
 }
