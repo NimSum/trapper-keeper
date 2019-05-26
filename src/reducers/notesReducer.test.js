@@ -47,19 +47,25 @@ it('should return a default state', () => {
     const expected = [];
     const result = notesReducer(undefined, {})
     expect(result).toEqual(expected);
-})
+});
 
 it('should be able to add notes', () => {
     const expected = mockNotes;
     const result = notesReducer(undefined, actions.addNotes(mockNotes));
     expect(result).toEqual(expected);    
-})
+});
 
 it('should be able to add a single note', () => {
     const expected = [mockNotes[0], ...mockNotes];
     const result = notesReducer(mockNotes, actions.addNote(mockNotes[0]));
     expect(result).toEqual(expected);
-})
+});
+
+it('should be able to delete a single note', () => {
+    const expected = [{...mockNotes[1]}, {...mockNotes[2]}]
+    const result = notesReducer(mockNotes, actions.deleteNote('1'))
+    expect(result).toEqual(expected);
+});
 
 
 })
