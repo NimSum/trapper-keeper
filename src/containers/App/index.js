@@ -16,7 +16,6 @@ export class App extends Component {
     return (
       <div>
         <h1>Trapper Keeper</h1>
-        < CardContainer />
         <Route path='/new-note' component={Form} />
         <Route path='/notes/:id' render={({ match }) => {
           const { id } = match.params;
@@ -25,6 +24,7 @@ export class App extends Component {
             return < Form foundNote={foundNote}/>
           }
         }} />
+        < CardContainer />
       </div>
     )
   }
