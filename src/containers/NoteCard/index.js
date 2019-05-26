@@ -3,8 +3,8 @@ import ListItem from '../../containers/ListItem';
 import { Link } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
-import {deleteNote} from '../../actions';
-import {deleteNoteFetch} from '../../utils/apiFetches/deleteNote';
+import { deleteNote } from '../../actions';
+import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 export class NoteCard extends Component {
   constructor() {
     super();
@@ -30,7 +30,7 @@ export class NoteCard extends Component {
     } 
 
     this.setState({ listItems: updateListItems }, () => 
-      this.props.updateNote({...this.state})
+      this.props.updateExistingNote({...this.state})
     );
   }
 
@@ -67,7 +67,7 @@ export class NoteCard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNote: note => dispatch(updateNote(note)),
+  updateExistingNote: note => dispatch(updateNote(note)),
   removeNote: id=> dispatch(deleteNote(id))
 })
 
