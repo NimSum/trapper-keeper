@@ -4,7 +4,7 @@ export const postNewNote = async (note) => {
     method: "POST",
     body: JSON.stringify(note),
     headers: {
-      "Content-type": "application/json"
+      "Content-Type": "application/json"
     }
   });
 
