@@ -59,7 +59,7 @@ export class Form extends Component {
     } catch(error) {
       this.setState({ error })
     }
-    await this.setState({ editing: false, title: '', listItems: [], redirect: true })
+    await this.setState({ editing: false, id: '', title: '', listItems: [], redirect: true })
   }
   
   addNote = () => {

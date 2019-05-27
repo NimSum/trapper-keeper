@@ -141,7 +141,20 @@ describe('Form Container', () => {
     expect(updateExistingNote).toHaveBeenCalledTimes(1);
   })
 
-
+  it('should reset state after editing existing note', async () => {
+    wrapper.setState(mockStateWithNotecard);
+    const expected = {
+      title: '',
+      listItemText: '',
+      listItems: [],
+      editing: false,
+      id: '',
+      redirect: true,
+      error: ''
+    }
+    await wrapper.instance().editNote();
+    expect(wrapper.state()).toEqual(expected);
+  })
 
 
 })
