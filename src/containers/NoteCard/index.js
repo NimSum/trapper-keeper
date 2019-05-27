@@ -74,7 +74,7 @@ export class NoteCard extends Component {
             { uncompletedListItems }
             { <hr /> && completedListItems }
           </ul>
-          <button className="delete-card" onClick={this.deleteNote}>X</button>
+          <i className="fas fa-trash-alt" onClick={this.deleteNote}></i>
         </article>
       </NavLink>
     )
