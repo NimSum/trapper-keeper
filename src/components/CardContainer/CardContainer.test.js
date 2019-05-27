@@ -51,18 +51,15 @@ describe('CardContainer', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-describe('MSTP', ()=> {
+
+describe('mapStateToProps', ()=> {
   it('should return an array of notes', () => { 
-    const mockState = {
-      notes: mockNotes
-    }
-    const expected = {
-      notes: mockNotes
-    }
+    const mockState = {notes: mockNotes}
+    const expected = {notes: mockNotes}
     const mappedProps = mapStateToProps(mockState)
     expect(mappedProps).toEqual(expected)
-  })
+   })
  })
 
- 
+
 })
