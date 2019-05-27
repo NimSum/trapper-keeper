@@ -141,4 +141,10 @@ export const mapDispatchToProps = dispatch => ({
   updateExistingNote: (note) => dispatch(updateNote(note))
 })
 
+Form.propTypes = {
+  addNewNote: PropTypes.func,
+  updateExistingNote: PropTypes.func,
+  foundNote: PropTypes.object
+}
+
 export default connect(null, mapDispatchToProps)(Form);
