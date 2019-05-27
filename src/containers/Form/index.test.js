@@ -4,10 +4,12 @@ import { shallow } from 'enzyme';
 import { addNewNote } from '../../thunks/addNewNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 import  uuidv4 from 'uuid/v4';
+import { jsxText } from '@babel/types';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => "1")
 });
+jest.mock('../../utils/apiFetches/putNote');
 
 describe('Form Container', () => {
   const initialState = {
@@ -39,10 +41,13 @@ describe('Form Container', () => {
     redirect: false,
     error: ''
   }
+  const updateExistingNote = jest.fn();
 
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow( <Form /> )
+    wrapper = shallow( <Form 
+      updateExistingNote={ updateExistingNote }
+    /> )
   })
 
   it('should match snapshot with no props passed', () => {
@@ -121,6 +126,20 @@ describe('Form Container', () => {
     expect(wrapper.state().listItemText).toEqual('')
   })
 
+  it('should editNote', async () => {
+    wrapper.setState(mockStateWithNotecard);
+    const mockExpected = {
+      id: '1',
+      title: 'Mock Note',
+      listItems: [
+        { id: "1", body: "nimsum", completed: false },
+        { id: "2", body: "dimsum", completed: false }
+      ],
+    }
+    await wrapper.instance().editNote();
+    expect(putNote).toHaveBeenCalledWith(mockExpected);
+    expect(updateExistingNote).toHaveBeenCalledTimes(1);
+  })
 
 
 
