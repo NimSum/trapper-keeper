@@ -70,45 +70,52 @@ describe('Form Container', () => {
     expect(wrapper.state()).toEqual(initialState);
   })
 
-  it('should set state notecard properties if recieving notecard prop(initial mount)', () => {
-    wrapper = shallow( 
-      < Form 
-        foundNote={ mockNoteCard }
-      />
-    )
-    expect(wrapper.state()).toEqual(mockStateWithNotecard);
+  describe('getDerivedStateFromProps', () => {
+    
+    it('should set state notecard properties if recieving notecard prop(initial mount)', () => {
+      wrapper = shallow( 
+        < Form 
+          foundNote={ mockNoteCard }
+        />
+      )
+      expect(wrapper.state()).toEqual(mockStateWithNotecard);
+    })
+  
+    it('should set state notecard passed in (already mounted)', () => {
+      wrapper.setProps({ foundNote: mockNoteCard})
+      expect(wrapper.state()).toEqual(mockStateWithNotecard);
+    })
+  
+    it('should not update state if there is no recieved notecard prop', () => {
+      wrapper.setProps({});
+      expect(wrapper.state()).toEqual(initialState); 
+    })
+
   })
 
-  it('should set state notecard passed in (already mounted)', () => {
-    wrapper.setProps({ foundNote: mockNoteCard})
-    expect(wrapper.state()).toEqual(mockStateWithNotecard);
-  })
-
-  it('should not update state if there is no recieved notecard prop', () => {
-    wrapper.setProps({});
-    expect(wrapper.state()).toEqual(initialState); 
-  })
-
-  it('should set state user input for notecard title', () => {
-    const mockTitleEvent = {
-      target: {
-        name: 'title',
-        value: 'To do list'
+  describe('handleChange', () => {
+    
+    it('should set state user input for notecard title', () => {
+      const mockTitleEvent = {
+        target: {
+          name: 'title',
+          value: 'To do list'
+        }
       }
-    }
-    wrapper.instance().handleChange(mockTitleEvent);
-    expect(wrapper.state().title).toEqual('To do list')
-  })
-
-  it('should set state user input for notecard list item', () => {
-    const mockTitleEvent = {
-      target: {
-        name: 'listItemText',
-        value: 'Take out the trash'
+      wrapper.instance().handleChange(mockTitleEvent);
+      expect(wrapper.state().title).toEqual('To do list')
+    })
+  
+    it('should set state user input for notecard list item', () => {
+      const mockTitleEvent = {
+        target: {
+          name: 'listItemText',
+          value: 'Take out the trash'
+        }
       }
-    }
-    wrapper.instance().handleChange(mockTitleEvent);
-    expect(wrapper.state().listItemText).toEqual('Take out the trash')
+      wrapper.instance().handleChange(mockTitleEvent);
+      expect(wrapper.state().listItemText).toEqual('Take out the trash')
+    })
   })
 
   it('should generate a new list item on handlesubmit', () => {
@@ -129,59 +136,86 @@ describe('Form Container', () => {
     expect(wrapper.state().listItemText).toEqual('')
   })
 
-  it('should putNote when editNote invoked', async () => {
-    wrapper.setState(mockStateWithNotecard);
-    const mockExpected = {
-      id: '1',
-      title: 'Mock Note',
-      listItems: [
-        { id: "1", body: "nimsum", completed: false },
-        { id: "2", body: "dimsum", completed: false }
-      ],
-    }
-    await wrapper.instance().editNote();
-    expect(putNote).toHaveBeenCalledWith(mockExpected);
-    expect(mockUpdateExistingNote).toHaveBeenCalledTimes(1);
+  describe('editNote', () => {
+
+    it('should putNote with correct params', async () => {
+      wrapper.setState(mockStateWithNotecard);
+      const mockExpected = {
+        id: '1',
+        title: 'Mock Note',
+        listItems: [
+          { id: "1", body: "nimsum", completed: false },
+          { id: "2", body: "dimsum", completed: false }
+        ],
+      }
+      await wrapper.instance().editNote();
+      expect(putNote).toHaveBeenCalledWith(mockExpected);
+      expect(mockUpdateExistingNote).toHaveBeenCalledTimes(1);
+    })
+  
+    it('should reset state after editing existing note', async () => {
+      wrapper.setState(mockStateWithNotecard);
+      const expected = {
+        title: '',
+        listItemText: '',
+        listItems: [],
+        editing: false,
+        id: '',
+        redirect: true,
+        error: ''
+      }
+      await wrapper.instance().editNote();
+      expect(wrapper.state()).toEqual(expected);
+    })
+  
+    it('should set state error if put request fails', async () => {
+      putNote.mockImplementation(() => Promise.reject('Failed to edit note'));
+      await wrapper.instance().editNote();
+      expect(wrapper.state().error).toEqual('Failed to edit note')
+    })
   })
 
-  it('should reset state after editing existing note', async () => {
-    wrapper.setState(mockStateWithNotecard);
-    const expected = {
-      title: '',
-      listItemText: '',
-      listItems: [],
-      editing: false,
-      id: '',
-      redirect: true,
-      error: ''
-    }
-    await wrapper.instance().editNote();
-    expect(wrapper.state()).toEqual(expected);
+  describe('addNote', () => {
+
+    it('should post new note when addNote method invoked', () => {
+      wrapper.setState(mockNoteCard);
+      const expected = {
+        title: 'Mock Note',
+        listItems: [
+          { id: "1", body: "nimsum", completed: false },
+          { id: "2", body: "dimsum", completed: false }
+        ]
+      }
+      wrapper.instance().addNote();
+      expect(mockAddNewNote).toHaveBeenCalledWith(expected);
+    })
+  
+    it('should should reset state after adding new note', async () => {
+      wrapper.setState(mockNoteCard);
+      await wrapper.instance().addNote();
+      expect(wrapper.state()).toEqual(initialState);
+    })
+  
+    it('should set state error if post request fail in addNote', async () => {
+      mockAddNewNote.mockImplementation(() => Promise.reject('Failed to post new note'));
+      await wrapper.instance().addNote();
+      expect(wrapper.state().error).toEqual('Failed to post new note')
+    })
   })
 
-  it('should set state error if put request fails', async () => {
-    putNote.mockImplementation(() => Promise.reject('Failed to edit note'));
-    await wrapper.instance().editNote();
-    expect(wrapper.state().error).toEqual('Failed to edit note')
-  })
-
-  it('should post new note when addNote method invoked', () => {
-    wrapper.setState(mockNoteCard);
-    const expected = {
-      title: 'Mock Note',
-      listItems: [
-        { id: "1", body: "nimsum", completed: false },
+  describe('updateListItems', () => {
+    
+    it('should update list item using correct params', () => {
+      wrapper.setState(mockStateWithNotecard);
+      const mockEditedListItem = { id: "1", body: "NIMDIMSUM", completed: false };
+      const expectedListItems = [
+        mockEditedListItem, 
         { id: "2", body: "dimsum", completed: false }
       ]
-    }
-    wrapper.instance().addNote();
-    expect(mockAddNewNote).toHaveBeenCalledWith(expected);
-  })
+      wrapper.instance().updateListItems(mockEditedListItem);
+      expect(wrapper.state().listItems).toEqual(expectedListItems);
+    })
 
-  it('should should reset state after adding new note', () => {
-    wrapper.setState(mockNoteCard);
-    wrapper.instance().addNote();
-    expect(wrapper.state()).toEqual(initialState);
   })
 
   

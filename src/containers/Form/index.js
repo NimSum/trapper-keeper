@@ -62,14 +62,14 @@ export class Form extends Component {
     await this.setState({ editing: false, id: '', title: '', listItems: [], redirect: true })
   }
   
-  addNote = () => {
+  addNote = async () => {
     const { title, listItems } = this.state;
     const newNote = {
       title,
       listItems
     }
     try {
-      this.props.addNewNote(newNote);
+      await this.props.addNewNote(newNote);
       this.setState({
         title: '',
         listItemText: '',
