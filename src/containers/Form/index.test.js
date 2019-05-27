@@ -28,6 +28,10 @@ describe('Form Container', () => {
     wrapper = shallow( <Form /> )
   })
 
+  it('should match snapshot with no props passed', () => {
+    expect(wrapper).toMatchSnapshot();
+  })
+
   it('should have initial state', () => {
     expect(wrapper.state()).toEqual(initialState);
   })
@@ -51,4 +55,5 @@ describe('Form Container', () => {
     }
     expect(wrapper.state()).toEqual(expected);
   })
+
 })

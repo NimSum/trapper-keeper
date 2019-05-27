@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Container should match snapshot with no props passed 1`] = `
+<div
+  className="form-container"
+>
+  <div
+    className="title-form"
+  >
+    <input
+      className="title"
+      name="title"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+  </div>
+  <div />
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      name="listItemText"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </form>
+  <button
+    onClick={[Function]}
+  >
+    Save
+  </button>
+</div>
+`;
