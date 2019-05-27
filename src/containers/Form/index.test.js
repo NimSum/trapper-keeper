@@ -75,6 +75,17 @@ describe('Form Container', () => {
     expect(wrapper.state()).toEqual(initialState); 
   })
 
+  it('should set state user input for notecard title', () => {
+    const mockTitleEvent = {
+      target: {
+        name: 'title',
+        value: 'To do list'
+      }
+    }
+    wrapper.instance().handleChange(mockTitleEvent);
+    expect(wrapper.state().title).toEqual('To do list')
+  })
+
 
 
 
