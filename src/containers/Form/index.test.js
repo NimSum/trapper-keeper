@@ -5,7 +5,6 @@ import { addNewNote } from '../../thunks/addNewNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 import { updateNote } from '../../actions/index';
 import  uuidv4 from 'uuid/v4';
-import { jsxText } from '@babel/types';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => "1")
