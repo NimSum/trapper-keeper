@@ -3,6 +3,7 @@ import { Form, mapDispatchToProps } from './index';
 import { shallow } from 'enzyme';
 import { addNewNote } from '../../thunks/addNewNote';
 import { putNote } from '../../utils/apiFetches/putNote';
+import { updateNote } from '../../actions/index';
 import  uuidv4 from 'uuid/v4';
 import { jsxText } from '@babel/types';
 
@@ -227,6 +228,18 @@ describe('Form Container', () => {
     })
   })
 
-  
+  describe('mapDispatchToProps', () => {
+    const mockDispatch = jest.fn();
+
+    it('should dispatch when using a function from MDTP', () => {
+      const dispatchAddNewNote = addNewNote(mockNoteCard);
+      const dispatchUpdateExistingNote = updateNote(mockNoteCard);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.addNewNote(mockNoteCard);
+      expect(mockDispatch).toHaveBeenCalledWith(dispatchAddNewNote);
+      mappedProps.updateExistingNote(mockNoteCard);
+      expect(mockDispatch).toHaveBeenCalledWith(dispatchUpdateExistingNote);
+    })
+  })
 
 })
