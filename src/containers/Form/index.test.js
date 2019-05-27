@@ -14,6 +14,14 @@ describe('Form Container', () => {
     id: '',
     redirect: false
   }
+  const mockNoteCard = {
+    title: "Mock Note",
+    id: "1",
+    listItems: [
+      { id: "1", body: "nimsum", completed: false },
+      { id: "2", body: "dimsum", completed: false }
+    ]
+  }
 
   let wrapper;
   beforeEach(() => {
