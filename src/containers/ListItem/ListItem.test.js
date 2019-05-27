@@ -49,22 +49,11 @@ describe('ListItem', () => {
     expect(wrapper.state('body')).toBe('Clean Room')
   })
 
-  // it('should update state of body when a user is editing ListItem', () => {
-  //   const spy = spyOn(wrapper.instance(), 'handleChange')
-  //   wrapper.instance().forceUpdate()
-  //   const mockEvent = {target: {value:"Clean Room"}}
-    
-  //   wrapper.find('.list-item-input').simulate('change', mockEvent)
-
-  //   expect(spy).toHaveBeenCalled()
-  // })
-
   it('should set state of editable to false on handleSubmit', () => {
     const mockEvent = {target: {value: false}}
     wrapper.instance().handleChange(mockEvent)
     expect(wrapper.state('editable')).toBe(false)
   })
-
 
   it('should call updateListItems on handleSubmit', () => {
     const mockEvent = {preventDefault: jest.fn()}
@@ -76,6 +65,30 @@ describe('ListItem', () => {
     wrapper.instance().checkItem()
     expect(mockUpdateListItems).toHaveBeenCalled()
   })
+
+  // it('should toggle the completed property when checkItems is called', () => {
+  //   wrapper.instance().checkItem()
+  //   expect(this.props.item.completed).toBe(!this.props.item.completed)
+  // })
+
+  it('should call updateListItems on deleteItem', () => {
+    wrapper.instance().deleteItem()
+    expect(mockUpdateListItems).toHaveBeenCalled()
+  })
+
+  //   it('calls handleChange when title is changed', () => {
+  //   wrapper = mount(
+  //     <ListItem   
+  //       item={ mockItem }
+  //       editing={ mockEditing }
+  //       updateListItems={ mockUpdateListItems } 
+  //       />)
+  //   const spy = spyOn(wrapper.instance(), 'handleChange')
+  //   wrapper.instance().forceUpdate()
+  //   const mockEvent = {target: {value:"Clean Room"}}
+  //   wrapper.find('.list-item-input').simulate('change', mockEvent)
+  //   expect(spy).toHaveBeenCalled()
+  // })
 
 
 
