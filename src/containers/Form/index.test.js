@@ -32,6 +32,15 @@ describe('Form Container', () => {
     expect(wrapper).toMatchSnapshot();
   })
 
+  it('should match snapshot with notecard prop', () => {
+    wrapper = shallow( 
+      < Form 
+        foundNote={ mockNoteCard }
+      />
+    )
+    expect(wrapper).toMatchSnapshot();
+  })
+
   it('should have initial state', () => {
     expect(wrapper.state()).toEqual(initialState);
   })
