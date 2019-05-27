@@ -11,7 +11,7 @@ export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
-
+      //Do we need to have this initial state as emopty or can we get rid of it? 
     }
   }
 
