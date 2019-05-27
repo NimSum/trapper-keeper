@@ -37,7 +37,12 @@ describe('ListItem', () => {
     expect(wrapper.state()).toEqual(mockDefaultState)
   })
 
-  
+  it('should set the editable property to true', () => {
+    wrapper.editItem = jest.fn()
+    wrapper.instance().editItem()
+    expect(wrapper.state()).toEqual({ body: "", editable: true })
+  })
+
 })
 
 
