@@ -178,7 +178,12 @@ describe('Form Container', () => {
     expect(mockAddNewNote).toHaveBeenCalledWith(expected);
   })
 
+  it('should should reset state after adding new note', () => {
+    wrapper.setState(mockNoteCard);
+    wrapper.instance().addNote();
+    expect(wrapper.state()).toEqual(initialState);
+  })
 
-
+  
 
 })
