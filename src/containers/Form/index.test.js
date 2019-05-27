@@ -10,6 +10,7 @@ jest.mock('uuid/v4', () => {
   return jest.fn(() => "1")
 });
 jest.mock('../../utils/apiFetches/putNote');
+jest.mock('../../thunks/addNewNote');
 
 describe('Form Container', () => {
   const initialState = {
@@ -41,12 +42,14 @@ describe('Form Container', () => {
     redirect: false,
     error: ''
   }
-  const updateExistingNote = jest.fn();
+  const mockUpdateExistingNote = jest.fn();
+  const mockAddNewNote = jest.fn();
 
   let wrapper;
   beforeEach(() => {
     wrapper = shallow( <Form 
-      updateExistingNote={ updateExistingNote }
+      updateExistingNote={ mockUpdateExistingNote }
+      addNewNote={ mockAddNewNote }
     /> )
   })
 
@@ -126,7 +129,7 @@ describe('Form Container', () => {
     expect(wrapper.state().listItemText).toEqual('')
   })
 
-  it('should editNote', async () => {
+  it('should putNote when editNote invoked', async () => {
     wrapper.setState(mockStateWithNotecard);
     const mockExpected = {
       id: '1',
@@ -138,7 +141,7 @@ describe('Form Container', () => {
     }
     await wrapper.instance().editNote();
     expect(putNote).toHaveBeenCalledWith(mockExpected);
-    expect(updateExistingNote).toHaveBeenCalledTimes(1);
+    expect(mockUpdateExistingNote).toHaveBeenCalledTimes(1);
   })
 
   it('should reset state after editing existing note', async () => {
@@ -155,6 +158,27 @@ describe('Form Container', () => {
     await wrapper.instance().editNote();
     expect(wrapper.state()).toEqual(expected);
   })
+
+  it('should set state error if put request fails', async () => {
+    putNote.mockImplementation(() => Promise.reject('Failed to edit note'));
+    await wrapper.instance().editNote();
+    expect(wrapper.state().error).toEqual('Failed to edit note')
+  })
+
+  it('should post new note when addNote method invoked', () => {
+    wrapper.setState(mockNoteCard);
+    const expected = {
+      title: 'Mock Note',
+      listItems: [
+        { id: "1", body: "nimsum", completed: false },
+        { id: "2", body: "dimsum", completed: false }
+      ]
+    }
+    wrapper.instance().addNote();
+    expect(mockAddNewNote).toHaveBeenCalledWith(expected);
+  })
+
+
 
 
 })
