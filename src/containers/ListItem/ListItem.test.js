@@ -72,6 +72,11 @@ describe('ListItem', () => {
     expect(mockUpdateListItems).toHaveBeenCalled()
   })
 
+  it('should call updateListItems on checkItem', () => {
+    wrapper.instance().checkItem()
+    expect(mockUpdateListItems).toHaveBeenCalled()
+  })
+
 
 
 
