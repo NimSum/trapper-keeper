@@ -116,6 +116,7 @@ export class Form extends Component {
           {this.state.listItems.map(item => {
             return (
             <ListItem 
+              key={ item.id}
               item={ item }
               editing={ this.state.editing }
               updateListItems={ this.updateListItems } />
