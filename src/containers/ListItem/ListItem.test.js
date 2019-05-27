@@ -65,7 +65,12 @@ describe('ListItem', () => {
     expect(wrapper.state('editable')).toBe(false)
   })
 
-  
+
+  it('should call updateListItems on handleSubmit', () => {
+    const mockEvent = {preventDefault: jest.fn()}
+    wrapper.instance().handleSubmit(mockEvent)
+    expect(mockUpdateListItems).toHaveBeenCalled()
+  })
 
 
 
