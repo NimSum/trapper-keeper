@@ -32,4 +32,23 @@ describe('Form Container', () => {
     expect(wrapper.state()).toEqual(initialState);
   })
 
+  it('should set state notecard properties if recieving notecard prop', () => {
+    wrapper = shallow( 
+      < Form 
+        foundNote={ mockNoteCard }
+      />
+    )
+    const expected = {
+      title: 'Mock Note',
+      listItemText: '',
+      listItems: [
+        { id: "1", body: "nimsum", completed: false },
+        { id: "2", body: "dimsum", completed: false }
+      ],
+      editing: true,
+      id: '1',
+      redirect: false
+    }
+    expect(wrapper.state()).toEqual(expected);
+  })
 })
