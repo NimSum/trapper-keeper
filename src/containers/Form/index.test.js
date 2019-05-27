@@ -70,6 +70,13 @@ describe('Form Container', () => {
     expect(wrapper.state()).toEqual(mockStateWithNotecard);
   })
 
-  
+  it('should not update state if there is no recieved notecard prop', () => {
+    wrapper.setProps({});
+    expect(wrapper.state()).toEqual(initialState); 
+  })
+
+
+
+
 
 })
