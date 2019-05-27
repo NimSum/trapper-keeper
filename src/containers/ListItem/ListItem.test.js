@@ -15,6 +15,10 @@ describe('ListItem', () => {
   }
   let mockEditing = false;
   let mockUpdateListItems = jest.fn()
+  let mockDefaultState = {
+    editable: false,
+    body: ''
+  } 
 
   beforeEach(()=> {
     wrapper = shallow(
@@ -22,10 +26,18 @@ describe('ListItem', () => {
       item={ mockItem }
       editing={ mockEditing }
       updateListItems={ mockUpdateListItems }
-    />)
+    />, {disableLifecycleMethods: true})
   })
 
   it('should match the snapshot' , () => {
     expect(wrapper).toMatchSnapshot();
   })
+
+  it('should have a default state', () => {
+    expect(wrapper.state()).toEqual(mockDefaultState)
+  })
+
+  
 })
+
+
