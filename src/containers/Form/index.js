@@ -68,14 +68,18 @@ export class Form extends Component {
       title,
       listItems
     }
-    this.props.addNewNote(newNote);
-    this.setState({
-      title: '',
-      listItemText: '',
-      listItems: [],
-      editing: false,
-      id: ''
-    })
+    try {
+      this.props.addNewNote(newNote);
+      this.setState({
+        title: '',
+        listItemText: '',
+        listItems: [],
+        editing: false,
+        id: ''
+      })
+    } catch(error) {
+      this.setState({ error })
+    }
   }
 
   updateListItems = (newItem, remove) => {
