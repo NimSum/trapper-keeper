@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ListItem from '../../containers/ListItem';
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
 import { deleteNote } from '../../actions';
@@ -56,22 +56,27 @@ export class NoteCard extends Component {
   }
 
   render() {
-    const listItems = this.props.note.listItems.map(item => (
-      < ListItem 
-        updateListItems={ this.updateListItems } 
-        item={ item } />
-    ))
+    const completedListItems = this.props.note.listItems.filter(item => {
+      return item.completed }).map(filteredItem => 
+      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+    )
+
+    const uncompletedListItems = this.props.note.listItems.filter(item => {
+      return !item.completed}).map(filteredItem => 
+      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+    )
 
     return (
-      <Link exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}}>
+      <NavLink exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}} activeClassName='active'>
         <article className='note-card'>
           <h3>{this.props.note.title}</h3>
           <ul className='note-items'>
-            { listItems }
+            { uncompletedListItems }
+            { <hr /> && completedListItems }
           </ul>
           <button className="delete-card" onClick={this.deleteNote}>X</button>
         </article>
-      </Link>
+      </NavLink>
     )
   }
 }
