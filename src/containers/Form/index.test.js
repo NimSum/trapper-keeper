@@ -216,6 +216,15 @@ describe('Form Container', () => {
       expect(wrapper.state().listItems).toEqual(expectedListItems);
     })
 
+    it('should delete list item if second param is recieved', () => {
+      wrapper.setState(mockStateWithNotecard);
+      const mockEditedListItem = { id: "1", body: "NIMDIMSUM", completed: false };
+      const expectedListItems = [
+        { id: "2", body: "dimsum", completed: false }
+      ]
+      wrapper.instance().updateListItems(mockEditedListItem, true);
+      expect(wrapper.state().listItems).toEqual(expectedListItems);
+    })
   })
 
   
