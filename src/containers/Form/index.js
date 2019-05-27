@@ -17,7 +17,8 @@ export class Form extends Component {
       listItems: [],
       editing: false,
       id: '',
-      redirect: false
+      redirect: false,
+      error: ''
     };
   }
 
@@ -56,7 +57,7 @@ export class Form extends Component {
       await putNote({ id, listItems, title });
       this.props.updateExistingNote({ id, listItems, title });
     } catch(error) {
-      console.log(error)
+      this.setState({ error })
     }
     await this.setState({ editing: false, title: '', listItems: [], redirect: true })
   }

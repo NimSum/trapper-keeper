@@ -16,7 +16,8 @@ describe('Form Container', () => {
     listItems: [],
     editing: false,
     id: '',
-    redirect: false
+    redirect: false,
+    error: ''
   }
   const mockNoteCard = {
     title: "Mock Note",
@@ -35,7 +36,8 @@ describe('Form Container', () => {
     ],
     editing: true,
     id: '1',
-    redirect: false
+    redirect: false,
+    error: ''
   }
 
   let wrapper;
@@ -116,7 +118,11 @@ describe('Form Container', () => {
     wrapper.setState(mockState);
     wrapper.instance().handleSubmit(mockSubmitEvent);
     expect(wrapper.state().listItems).toEqual(mockExpected);
+    expect(wrapper.state().listItemText).toEqual('')
   })
+
+
+
 
 
 })
