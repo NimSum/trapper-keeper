@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import  { App }  from './index.js';
 import { mount, shallow } from 'enzyme';
 import {mapStateToProps, mapDispatchToProps} from '../App'
+import { addNotes } from '../../actions/index'
 
 describe('App',() => {
   let wrapper;
@@ -62,7 +63,11 @@ describe('App',() => {
   })
   describe('mapDispatchToProps', () => {
     it('should call dispatch with a note action on componentDidMount', () => {
-    
+      const mockDispatch = jest.fn();
+      const actionToDispatch = addNotes(mockNotes);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.setNotes(mockNotes)
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
 
