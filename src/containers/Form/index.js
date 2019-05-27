@@ -50,8 +50,6 @@ export class Form extends Component {
     })
   }
 
-
-
   editNote = async () => {
     const { id, listItems, title} = this.state;
     try {

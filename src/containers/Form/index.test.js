@@ -5,6 +5,10 @@ import { addNewNote } from '../../thunks/addNewNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 import  uuidv4 from 'uuid/v4';
 
+jest.mock('uuid/v4', () => {
+  return jest.fn(() => "1")
+});
+
 describe('Form Container', () => {
   const initialState = {
     title: '',
@@ -97,6 +101,22 @@ describe('Form Container', () => {
     expect(wrapper.state().listItemText).toEqual('Take out the trash')
   })
 
+  it('should generate a new list item on handlesubmit', () => {
+    const mockSubmitEvent = {
+      preventDefault: () => {}
+    }
+    const mockExpected = [{ 
+      id: "1", 
+      body: "Take out the trash", 
+      completed: false 
+    }]
+    const mockState = {
+      listItemText: 'Take out the trash'
+    }
+    wrapper.setState(mockState);
+    wrapper.instance().handleSubmit(mockSubmitEvent);
+    expect(wrapper.state().listItems).toEqual(mockExpected);
+  })
 
 
 })
