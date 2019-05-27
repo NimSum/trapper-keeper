@@ -54,6 +54,10 @@ describe('Form Container', () => {
     /> )
   })
 
+  afterEach(() => {
+    mockUpdateExistingNote.mockReset();
+  })
+
   it('should match snapshot with no props passed', () => {
     expect(wrapper).toMatchSnapshot();
   })
@@ -69,6 +73,19 @@ describe('Form Container', () => {
 
   it('should have initial state', () => {
     expect(wrapper.state()).toEqual(initialState);
+  })
+
+  it('should trigger addNote for new notes', async () => {
+    await wrapper.find('button').simulate('click');
+    expect(wrapper.state()).toEqual(initialState)
+  })
+
+  it('should trigger handleSubmit on form submit', () => {
+    const mockSubmitEvent = {
+      preventDefault: jest.fn()
+    }
+    wrapper.find('form').simulate('submit', mockSubmitEvent);
+    expect(mockSubmitEvent.preventDefault).toHaveBeenCalledTimes(1);
   })
 
   describe('getDerivedStateFromProps', () => {
