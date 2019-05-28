@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import  { App }  from './index.js';
-import { mount, shallow } from 'enzyme';
-import {mapStateToProps, mapDispatchToProps} from '../App'
-import { addNotes } from '../../actions/index'
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./index.js";
+import { mount, shallow } from "enzyme";
+import { mapStateToProps, mapDispatchToProps } from "../App";
+import { addNotes } from "../../actions/index";
 
-describe('App',() => {
+describe("App", () => {
   let wrapper;
   let mockNotes;
 
-  beforeEach(()=> {
-    wrapper = shallow(<App />)
+  beforeEach(() => {
+    wrapper = shallow(<App />);
 
-    mockNotes= [
+    mockNotes = [
       {
         title: "randomnote",
         id: "1",
@@ -47,29 +47,27 @@ describe('App',() => {
         ]
       }
     ];
-  })
-
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
   });
 
-  describe('mapStateToProps', () => {
-    it('should return an array or notes', () => {
-      const mockState = {notes: mockNotes}
-      const expected = {notes: mockNotes}
-      const mappedProps = mapStateToProps(mockState)
-      expect(mappedProps).toEqual(expected)
-    })
-  })
-  describe('mapDispatchToProps', () => {
-    it('should call dispatch with a note action on componentDidMount', () => {
+  it("should match snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  describe("mapStateToProps", () => {
+    it("should return an array or notes", () => {
+      const mockState = { notes: mockNotes };
+      const expected = { notes: mockNotes };
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+  describe("mapDispatchToProps", () => {
+    it("should call dispatch with a note action on componentDidMount", () => {
       const mockDispatch = jest.fn();
       const actionToDispatch = addNotes(mockNotes);
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.setNotes(mockNotes)
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
-  })
-
-})
-
+      mappedProps.setNotes(mockNotes);
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+  });
+});

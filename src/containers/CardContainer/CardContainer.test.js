@@ -1,15 +1,14 @@
-import React from 'react'
-import { shallow } from 'enzyme';
-import { CardContainer, mapStateToProps } from './index.js';
-import { NoteCard } from '../../containers/NoteCard/index'
+import React from "react";
+import { shallow } from "enzyme";
+import { CardContainer, mapStateToProps } from "./index.js";
+import { NoteCard } from "../../containers/NoteCard/index";
 
-
-describe('CardContainer', () => {
+describe("CardContainer", () => {
   let wrapper;
   let mockNotes;
 
-  beforeEach(()=> {
-    mockNotes= [
+  beforeEach(() => {
+    mockNotes = [
       {
         title: "randomnote",
         id: "1",
@@ -44,22 +43,19 @@ describe('CardContainer', () => {
         ]
       }
     ];
-    wrapper = shallow(<CardContainer notes={mockNotes}/>)
-  })
+    wrapper = shallow(<CardContainer notes={mockNotes} />);
+  });
 
-  it('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
+  it("should match the snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 
-
-describe('mapStateToProps', ()=> {
-  it('should return an array of notes', () => { 
-    const mockState = {notes: mockNotes}
-    const expected = {notes: mockNotes}
-    const mappedProps = mapStateToProps(mockState)
-    expect(mappedProps).toEqual(expected)
-   })
- })
-
-
-})
+  describe("mapStateToProps", () => {
+    it("should return an array of notes", () => {
+      const mockState = { notes: mockNotes };
+      const expected = { notes: mockNotes };
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+});
