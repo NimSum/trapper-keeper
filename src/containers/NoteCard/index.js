@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import ListItem from '../../containers/ListItem';
 import { NavLink, Link } from 'react-router-dom'
-import { updateNote } from '../../actions/index';
+import { updateNote, deleteNote } from '../../actions/';
 import { connect } from 'react-redux';
-import { deleteNote } from '../../actions';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
