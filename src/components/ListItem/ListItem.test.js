@@ -125,4 +125,12 @@ describe("ListItem", () => {
     const expected = { "body": "Hello", "completed": true, "id": 4 };
     expect(mockUpdateListItems).toHaveBeenCalledWith(expected);
   })
+
+  it('should handleSubmit on form submit', () => {
+    const preventDefault = jest.fn();
+    wrapper.setState({ editable: true })
+    const mockEvent = { preventDefault };
+    wrapper.find('form').simulate('submit', mockEvent);
+    expect(preventDefault).toHaveBeenCalledTimes(1);
+  })
 });
