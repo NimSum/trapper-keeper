@@ -12,7 +12,8 @@ export class NoteCard extends Component {
     this.state = {
       id: '',
       listItems: [],
-      title: ''
+      title: '',
+      error: ''
     }
   }
 
@@ -40,12 +41,12 @@ export class NoteCard extends Component {
       try {
         await putNote({ ...this.state })
       } catch(error) {
-        console.log(error);
+        this.setState({ error })
       }
     });
   }
 
-  deleteNote = async() => {
+  deleteNote = async () => {
     const {id} = this.props.note
     console.log(id, 'Testing delete')
     try{

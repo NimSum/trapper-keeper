@@ -16,6 +16,15 @@ describe('Notecard container', () => {
       { id: "2", body: "wash dishes", completed: false }
     ]
   }
+  const mockStateWithNoteCard = {
+    title: "Mock Note",
+    id: "1",
+    listItems: [
+      { id: "1", body: "take out trash", completed: false },
+      { id: "2", body: "wash dishes", completed: false }
+    ],
+    error: ''
+  }
   let mockUpdateExistingNote = jest.fn();
   let wrapper;
   beforeEach(() => {
@@ -87,16 +96,29 @@ describe('Notecard container', () => {
         listItems: [
           { id: "1", body: "take out trash", completed: true },
           { id: "2", body: "wash dishes", completed: true }
-        ]
+        ],
+        error: ''
       }
       expect(mockUpdateExistingNote).toHaveBeenCalledWith(expected);
     })
 
-    it('should set putNote passing updated state as args', async () => {
+    it('should call putNote passing updated state as args', async () => {
       await wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
       const expected = wrapper.state();
       expect(putNote).toHaveBeenCalledWith(expected);
     })
 
+    it.skip('should call setState error if request fails', async () => {
+      putNote.mockImplementation(() => 
+        Promise.resolve({
+          ok: false
+        }));
+      await wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
+      await expect(wrapper.state().error).toEqual('expected');
+    })
+  })
+
+  describe('deleteNote', () => {
+    
   })
 })
