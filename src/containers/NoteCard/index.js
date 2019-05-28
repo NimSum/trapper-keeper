@@ -10,7 +10,9 @@ export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
-
+      id: '',
+      listItems: [],
+      title: ''
     }
   }
 
@@ -62,7 +64,10 @@ export class NoteCard extends Component {
 
     const uncompletedListItems = this.props.note.listItems.filter(item => {
       return !item.completed}).map(filteredItem => 
-      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+      (<ListItem 
+        updateListItems={ this.updateListItems }
+        item={ filteredItem } 
+      />)
     )
 
     return (
