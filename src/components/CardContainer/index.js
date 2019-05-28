@@ -14,7 +14,7 @@ export const CardContainer = ({ notes }) => (
   </section>
 )
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   notes: state.notes
 })
 

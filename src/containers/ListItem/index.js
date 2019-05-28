@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 export class ListItem extends Component {
   constructor() {
@@ -89,7 +88,6 @@ export class ListItem extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-})
 
-export default connect(null, mapDispatchToProps)(ListItem);
+
+export default ListItem;

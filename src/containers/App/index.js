@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import { addNotes } from '../../actions/';
 import CardContainer from '../../components/CardContainer';
 import Form from '../Form'
+
 export class App extends Component {
 
   async componentDidMount() {
@@ -12,6 +13,8 @@ export class App extends Component {
     this.props.setNotes(notes.notes)
   } 
 
+
+  
   render() {
     return (
       <div>
@@ -30,11 +33,11 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   notes: state.notes
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   setNotes: (notes) => dispatch(addNotes(notes))
 })
 
