@@ -10,7 +10,7 @@ export const CardContainer = ({ notes }) => (
         note={ note } 
         key={note.id} />
     })}
-    <Link exact to='/new-note'> New Note </Link>
+    
   </section>
 )
 

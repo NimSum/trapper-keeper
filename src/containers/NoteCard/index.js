@@ -66,13 +66,22 @@ export class NoteCard extends Component {
       (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
     )
 
+    let lineBreak;
+    let completedText;
+    if (completedListItems) {
+      completedText = <p>Completed</p>
+      lineBreak = <hr />
+    }
+
     return (
       <NavLink exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}} activeClassName='active'>
         <article className='note-card'>
           <h3>{this.props.note.title}</h3>
           <ul className='note-items'>
             { uncompletedListItems }
-            { <hr /> && completedListItems }
+            { completedText }
+            { lineBreak }
+            { completedListItems }
           </ul>
           <i className="fas fa-trash-alt" onClick={this.deleteNote}></i>
         </article>
