@@ -1,5 +1,5 @@
 import React from "react";
-import { App } from "./index.js";
+import { App } from "./index";
 import { shallow } from "enzyme";
 import { mapStateToProps, mapDispatchToProps } from "../App";
 import { addNotes } from "../../actions/index";
@@ -7,10 +7,13 @@ import { addNotes } from "../../actions/index";
 describe("App", () => {
   let wrapper;
   let mockNotes;
-
+  let mockSetNotes = jest.fn();
+  
   beforeEach(() => {
-    wrapper = shallow(<App />);
-
+    wrapper = shallow(
+      < App 
+        setNotes={ mockSetNotes } />
+    );
     mockNotes = [
       {
         title: "randomnote",
@@ -52,6 +55,8 @@ describe("App", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+
+
   describe("mapStateToProps", () => {
     it("should return an array or notes", () => {
       const mockState = { notes: mockNotes };
@@ -60,6 +65,7 @@ describe("App", () => {
       expect(mappedProps).toEqual(expected);
     });
   });
+
   describe("mapDispatchToProps", () => {
     it("should call dispatch with a note action on componentDidMount", () => {
       const mockDispatch = jest.fn();

@@ -7,10 +7,23 @@ import Form from "../Form";
 import PropTypes from "prop-types";
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      error: ''
+    }
+  }
+
   async componentDidMount() {
-    const response = await fetch("http://localhost:3000/api/v1/notes");
-    const notes = await response.json();
-    this.props.setNotes(notes.notes);
+    try {
+      const response = await fetch("http://localhost:3000/api/v1/notes");
+      if (response.ok) {
+        const notes = await response.json();
+        this.props.setNotes(notes.notes)
+      } else throw Error('Failed to get notes');
+    } catch(error) {
+      this.setState({ error });
+    }
   }
 
   render() {
