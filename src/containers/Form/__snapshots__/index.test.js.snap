@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Container should match snapshot with no props passed 1`] = `
+<div
+  className="form-container"
+>
+  <div
+    className="title-form"
+  >
+    <input
+      className="title"
+      name="title"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+  </div>
+  <div />
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      name="listItemText"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </form>
+  <button
+    onClick={[Function]}
+  >
+    Save
+  </button>
+</div>
+`;
+
+exports[`Form Container should match snapshot with notecard prop 1`] = `
+<div
+  className="form-container"
+>
+  <div
+    className="title-form"
+  >
+    <input
+      className="title"
+      name="title"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+      value="Mock Note"
+    />
+  </div>
+  <div>
+    <ConnectFunction
+      editing={true}
+      item={
+        Object {
+          "body": "nimsum",
+          "completed": false,
+          "id": "1",
+        }
+      }
+      key="1"
+      updateListItems={[Function]}
+    />
+    <ConnectFunction
+      editing={true}
+      item={
+        Object {
+          "body": "dimsum",
+          "completed": false,
+          "id": "2",
+        }
+      }
+      key="2"
+      updateListItems={[Function]}
+    />
+  </div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      name="listItemText"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </form>
+  <button
+    onClick={[Function]}
+  >
+    Save
+  </button>
+</div>
+`;

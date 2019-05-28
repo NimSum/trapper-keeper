@@ -17,7 +17,8 @@ export class Form extends Component {
       listItems: [],
       editing: false,
       id: '',
-      redirect: false
+      redirect: false,
+      error: ''
     };
   }
 
@@ -50,33 +51,35 @@ export class Form extends Component {
     })
   }
 
-
-
   editNote = async () => {
     const { id, listItems, title} = this.state;
     try {
       await putNote({ id, listItems, title });
       this.props.updateExistingNote({ id, listItems, title });
     } catch(error) {
-      console.log(error)
+      this.setState({ error })
     }
-    await this.setState({ editing: false, title: '', listItems: [], redirect: true })
+    await this.setState({ editing: false, id: '', title: '', listItems: [], redirect: true })
   }
   
-  addNote = () => {
+  addNote = async () => {
     const { title, listItems } = this.state;
     const newNote = {
       title,
       listItems
     }
-    this.props.addNewNote(newNote);
-    this.setState({
-      title: '',
-      listItemText: '',
-      listItems: [],
-      editing: false,
-      id: ''
-    })
+    try {
+      await this.props.addNewNote(newNote);
+      this.setState({
+        title: '',
+        listItemText: '',
+        listItems: [],
+        editing: false,
+        id: ''
+      })
+    } catch(error) {
+      this.setState({ error })
+    }
   }
 
   updateListItems = (newItem, remove) => {
@@ -116,6 +119,7 @@ export class Form extends Component {
           {this.state.listItems.map(item => {
             return (
             <ListItem 
+              key={ item.id}
               item={ item }
               editing={ this.state.editing }
               updateListItems={ this.updateListItems } />
@@ -140,5 +144,11 @@ export const mapDispatchToProps = dispatch => ({
   addNewNote: (note) => dispatch(addNewNote(note)),
   updateExistingNote: (note) => dispatch(updateNote(note))
 })
+
+Form.propTypes = {
+  addNewNote: PropTypes.func,
+  updateExistingNote: PropTypes.func,
+  foundNote: PropTypes.object
+}
 
 export default connect(null, mapDispatchToProps)(Form);
