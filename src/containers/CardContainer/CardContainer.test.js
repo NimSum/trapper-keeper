@@ -43,8 +43,8 @@ describe('CardContainer', () => {
           }
         ]
       }
-    ];
-    wrapper = shallow(<CardContainer notes={mockNotes}/>)
+    ]
+    wrapper = shallow(<CardContainer notes={mockNotes} />)
   })
 
   it('should match the snapshot', () => {
