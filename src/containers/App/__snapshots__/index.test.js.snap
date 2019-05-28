@@ -13,7 +13,8 @@ exports[`App should match snapshot 1`] = `
     to="/new-note"
   >
     <h2>
-       Add a New Note 
+       
+      Add a New Note 
       <i
         className="fas fa-plus-square"
       />

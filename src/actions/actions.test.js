@@ -69,31 +69,27 @@ describe("actions", () => {
   });
 
   describe("UPDATE_NOTE", () => {
-      it('should return an action object with a type of UPDATE_NOTE', () => {
-          const expected = "UPDATE_NOTE"
-          const results = actions.updateNote(mockNotes[0]);
-          expect(results.type).toBe(expected);
-      });
-      it('should have a property of note', () => {
-          const expected = mockNotes[0];
-          const results = actions.updateNote(mockNotes[0]);
-          expect(results.note).toEqual(expected);
-      });
-})
-describe('DELETE_NOTE', () => {
-    it('should return an action object with a type of DELETE_NOTE', () => {
-        const expected = 'DELETE_NOTE';
-        const results = actions.deleteNote('1');
-        expect(results.type).toBe(expected);
-
-    })
+    it("should return an action object with a type of UPDATE_NOTE", () => {
+      const expected = "UPDATE_NOTE";
+      const results = actions.updateNote(mockNotes[0]);
+      expect(results.type).toBe(expected);
+    });
+    it("should have a property of note", () => {
+      const expected = mockNotes[0];
+      const results = actions.updateNote(mockNotes[0]);
+      expect(results.note).toEqual(expected);
+    });
+  });
+  describe("DELETE_NOTE", () => {
+    it("should return an action object with a type of DELETE_NOTE", () => {
+      const expected = "DELETE_NOTE";
+      const results = actions.deleteNote("1");
+      expect(results.type).toBe(expected);
+    });
     it("should have a property of id", () => {
-        const expected = '1';
-        const results = actions.deleteNote('1');
-        expect(results.id).toEqual(expected)
-    })
-    
-})
-
-
+      const expected = "1";
+      const results = actions.deleteNote("1");
+      expect(results.id).toEqual(expected);
+    });
+  });
 });
