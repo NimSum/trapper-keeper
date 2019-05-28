@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { App } from "./index.js";
-import { mount, shallow } from "enzyme";
+import { shallow } from "enzyme";
 import { mapStateToProps, mapDispatchToProps } from "../App";
 import { addNotes } from "../../actions/index";
 
