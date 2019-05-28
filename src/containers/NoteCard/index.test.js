@@ -128,4 +128,20 @@ describe('Notecard container', () => {
     })
   })
 
+
+  describe('mapDispatchToProps', () => {
+    const mockDispatch = jest.fn();
+    const mockNote = { id: "1", body: "take out trash", completed: false };
+
+    it('should dispatch when using a function from MDTP', () => {
+      const dispatchUpdateExistingNote = updateNote(mockNote);
+      const dispatchRemoveNote = deleteNote(mockNote.id);
+      const dispatchedProps = mapDispatchToProps(mockDispatch);
+      dispatchedProps.updateExistingNote(mockNote);
+      expect(mockDispatch).toHaveBeenCalledWith(dispatchUpdateExistingNote);
+      dispatchedProps.removeNote(mockNote.id);
+      expect(mockDispatch).toHaveBeenCalledWith(dispatchRemoveNote);
+    })
+  })
+
 })
