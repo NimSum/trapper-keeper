@@ -58,5 +58,11 @@ describe('Notecard container', () => {
       expect(wrapper.state().listItems).toEqual(expected);
     })
 
+    it('should call updateStateAndDatabase', () => {
+      const spy = jest.spyOn(wrapper.instance(), 'updateStateAndDatabase');
+      wrapper.instance().updateListItems(updatedListItem);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    })
   })
 })
