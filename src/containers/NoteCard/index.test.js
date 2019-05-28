@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import { updateNote, deleteNote } from '../../actions/';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
-import { isThisTypeAnnotation } from '@babel/types';
 
 jest.mock('../../utils/apiFetches/deleteNote');
 jest.mock('../../utils/apiFetches/putNote');

@@ -72,15 +72,18 @@ export class NoteCard extends Component {
     )
 
     return (
-      <NavLink exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}} activeClassName='active'>
-        <article className='note-card'>
-          <h3>{this.props.note.title}</h3>
-          <ul className='note-items'>
-            { uncompletedListItems }
-            { <hr /> && completedListItems }
-          </ul>
-          <button className="delete-card" onClick={this.deleteNote}>X</button>
-        </article>
+      <NavLink 
+        exact to={`/notes/${this.props.note.id}`} 
+        style={{ textDecoration: 'none'}}
+        activeClassName='active'>
+          <article className='note-card'>
+            <h3>{this.props.note.title}</h3>
+            <ul className='note-items'>
+              { uncompletedListItems }
+              { <hr /> && completedListItems }
+            </ul>
+            <button className="delete-card" onClick={this.deleteNote}>X</button>
+          </article>
       </NavLink>
     )
   }
