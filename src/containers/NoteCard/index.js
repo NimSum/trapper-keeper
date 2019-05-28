@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ListItem from '../../containers/ListItem';
+import ListItem from '../../components/ListItem';
 import { NavLink } from 'react-router-dom'
 import { updateNote, deleteNote } from '../../actions/';
 import { connect } from 'react-redux';
