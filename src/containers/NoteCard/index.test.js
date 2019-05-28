@@ -3,6 +3,7 @@ import { NoteCard, mapDispatchToProps } from './index';
 import { shallow } from 'enzyme';
 import { updateNote, deleteNote } from '../../actions/';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
+// import * as utils from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
 jest.mock('../../utils/apiFetches/deleteNote');
@@ -103,27 +104,24 @@ describe('Notecard container', () => {
     })
 
     it.skip('should call setState error if request fails', async () => {
-      putNote.mockImplementation(() => 
-        Promise.resolve({
-          ok: false
-        }));
+      putNote.mockImplementation(() => Promise.reject('Failed to delete note'));
       await wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
-      await expect(wrapper.state().error).toEqual('expected');
+      expect(wrapper.state().error).toEqual('expected');
     })
   })
 
   describe('deleteNote', () => {
-    it('should call deleteNoteFetch using correct params', () => {
+    it('should call deleteNoteFetch using correct params', async () => {
       wrapper.instance().deleteNote();
       const expected = wrapper.state().id;
-      expect(deleteNoteFetch).toHaveBeenCalledWith(expected);
+      await expect(deleteNoteFetch).toHaveBeenCalledWith(expected);
       expect(mockRemoveNote).toHaveBeenCalledTimes(1);
     })
 
-    it.skip('should call set state error when fetch fails', async () => {
+    it('should set state error when fetch fails', async () => {
       deleteNoteFetch.mockImplementation(() => Promise.reject('Failed to delete note'));
       await wrapper.instance().deleteNote();
-      expect(wrapper.state().error).toEqual('');
+      expect(wrapper.state().error).toEqual('Failed to delete note');
     })
   })
 

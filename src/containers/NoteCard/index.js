@@ -49,9 +49,9 @@ export class NoteCard extends Component {
   deleteNote = async () => {
     const {id} = this.props.note
     try{
-      deleteNoteFetch(id);
+      await deleteNoteFetch(id);
       this.props.removeNote(id);
-    }catch(error){
+    }catch(error) {
       this.setState({ error });
     }
   }
