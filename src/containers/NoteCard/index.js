@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ListItem from '../../containers/ListItem';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { updateNote } from '../../actions/index';
 import { connect } from 'react-redux';
 import { deleteNote } from '../../actions';
@@ -11,7 +11,7 @@ export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
-      //Do we need to have this initial state as emopty or can we get rid of it? 
+      color: 'white'
     }
   }
 
@@ -33,6 +33,13 @@ export class NoteCard extends Component {
     this.updateStateAndDatabase(updateListItems);
   }
 
+  colorChange = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let color = e.target.getAttribute('data-color')
+    this.setState({ color })
+  }
+
   updateStateAndDatabase(updatedItems) {
     this.setState({ listItems: updatedItems }, async () => {
       this.props.updateExistingNote({...this.state})
@@ -44,7 +51,7 @@ export class NoteCard extends Component {
     });
   }
 
-  deleteNote = async() => {
+  deleteNote = async () => {
     const {id} = this.props.note
     console.log(id, 'Testing delete')
     try{
@@ -58,12 +65,12 @@ export class NoteCard extends Component {
   render() {
     const completedListItems = this.props.note.listItems.filter(item => {
       return item.completed }).map(filteredItem => 
-      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+      (<ListItem updateListItems={ this.updateListItems } key={ filteredItem.id } item={ filteredItem } />)
     )
 
     const uncompletedListItems = this.props.note.listItems.filter(item => {
       return !item.completed}).map(filteredItem => 
-      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+      (<ListItem updateListItems={ this.updateListItems } key={ filteredItem.id } item={ filteredItem } />)
     )
 
     let lineBreak;
@@ -75,7 +82,7 @@ export class NoteCard extends Component {
 
     return (
       <NavLink exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}} activeClassName='active'>
-        <article className='note-card'>
+        <article className='note-card' style={{background: this.state.color}}>
           <h3>{this.props.note.title}</h3>
           <ul className='note-items'>
             { uncompletedListItems }
@@ -83,7 +90,17 @@ export class NoteCard extends Component {
             { lineBreak }
             { completedListItems }
           </ul>
-          <i className="fas fa-trash-alt" onClick={this.deleteNote}></i>
+          <div className="svg-container"> 
+            <div className='color-svgs'>
+              <i data-color='white' className="fas fa-circle white" onClick={ (e) => { this.colorChange(e) }}></i>
+              <i data-color='#40c3ff' className="fas fa-circle blue" onClick={ (e) => { this.colorChange(e) }}></i>
+              <i data-color='#ff6d3f' className="fas fa-circle red" onClick={ (e) => { this.colorChange(e) }}></i>
+              <i data-color='#fcf296'className="fas fa-circle yellow" onClick={ (e) => { this.colorChange(e) }}></i>
+            </div>
+            <div> 
+              <i className="fas fa-trash-alt" onClick={this.deleteNote}></i>
+            </div>
+          </div>
         </article>
       </NavLink>
     )

@@ -107,7 +107,7 @@ export class Form extends Component {
       <div className='form-container'>
         <div className='title-form'>
           <input 
-            placeholder='Title' 
+            placeholder='Add a Title' 
             type='text'
             name='title'
             value={ this.state.title }

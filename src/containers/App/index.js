@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom'
 import { addNotes } from '../../actions/';
 import CardContainer from '../../components/CardContainer';
-import Form from '../Form'
+import Form from '../Form';
 
 export class App extends Component {
 
@@ -17,7 +17,7 @@ export class App extends Component {
   
   render() {
     return (
-      <div>
+      <main>
         <h1>Trapper Keeper</h1>
         <hr  className="header-break"/>
         <Link exact to='/new-note'>
@@ -28,11 +28,11 @@ export class App extends Component {
           const { id } = match.params;
           const foundNote = this.props.notes.find(note => note.id === id);
           if (foundNote) {
-            return < Form foundNote={foundNote}/>
+            return <Form foundNote={foundNote}/>
           }
         }} />
-        < CardContainer />
-      </div>
+        <CardContainer />
+      </main>
     )
   }
 }
