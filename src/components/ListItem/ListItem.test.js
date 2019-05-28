@@ -114,5 +114,15 @@ describe("ListItem", () => {
     expect(wrapper.state().editable).toBe(true);
   })
 
+  it('should delete item on click', () => {
+    wrapper.find('i.fas').simulate('click');
+    const expectedFirstArg = { "body": "Hello", "completed": false, "id": 4 };
+    expect(mockUpdateListItems).toHaveBeenCalledWith(expectedFirstArg, true)
+  })
 
+  it('should check item on click', () => {
+    wrapper.find('i.far').simulate('click');
+    const expected = { "body": "Hello", "completed": true, "id": 4 };
+    expect(mockUpdateListItems).toHaveBeenCalledWith(expected);
+  })
 });
