@@ -134,7 +134,7 @@ export class Form extends Component {
             onBlur={ this.handleSubmit }
             autoFocus />
         </form>
-          <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() }>Save</button>      
+          <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() } className="save-button">Save</button>      
       </div>
     )
   }
