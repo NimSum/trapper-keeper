@@ -55,6 +55,14 @@ describe("App", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should invoke setNotes when fetch is successful", async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockNotes)
+    }))
+    await wrapper.instance().componentDidMount();
+    expect(mockSetNotes).toHaveBeenCalledTimes(1);
+  })
 
 
   describe("mapStateToProps", () => {
