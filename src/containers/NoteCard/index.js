@@ -66,7 +66,8 @@ export class NoteCard extends Component {
       return !item.completed}).map(filteredItem => 
       (<ListItem 
         updateListItems={ this.updateListItems }
-        item={ filteredItem } 
+        item={ filteredItem }
+        key={ filteredItem.id } 
       />)
     )
 
