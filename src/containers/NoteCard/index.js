@@ -86,7 +86,7 @@ export class NoteCard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   updateExistingNote: note => dispatch(updateNote(note)),
   removeNote: id=> dispatch(deleteNote(id))
 })
