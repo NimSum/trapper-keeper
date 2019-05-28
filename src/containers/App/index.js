@@ -19,8 +19,9 @@ export class App extends Component {
     return (
       <div>
         <h1>Trapper Keeper</h1>
+        <hr  className="header-break"/>
         <Link exact to='/new-note'>
-          <h3> Add a New Note <i className="fas fa-plus-square"></i> </h3>
+          <h2> Add a New Note <i className="fas fa-plus-square"></i> </h2>
         </Link>
         <Route path='/new-note' component={Form} />
         <Route path='/notes/:id' render={({ match }) => {

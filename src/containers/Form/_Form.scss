@@ -1,6 +1,6 @@
 .form-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 40%;
+  width: 33%;
   margin: 0 auto 20px;  
   padding: 5px 10px;
   line-height: 1.4;
@@ -14,4 +14,8 @@
   font-weight: 600;
   width: 100%;
   border: none;
+}
+
+.save-button {
+  margin-top: 15px;
 }
