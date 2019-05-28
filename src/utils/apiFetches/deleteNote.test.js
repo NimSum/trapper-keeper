@@ -30,7 +30,7 @@ describe("deleteNote fetch", () => {
       .mockImplementation(() =>
         Promise.resolve({ ok: false, statusText: "No notes found" })
       );
-    const expected = Error("No notes found");
+    const expected =  new Error("No notes found");
     const result = await deleteNoteFetch("1");
 
     expect(result).toEqual(expected);

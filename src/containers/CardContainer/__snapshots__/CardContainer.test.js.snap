@@ -4,7 +4,7 @@ exports[`CardContainer should match the snapshot 1`] = `
 <section
   className="notes-container"
 >
-  <ConnectFunction
+  <Connect(NoteCard)
     key="1"
     note={
       Object {
@@ -20,7 +20,7 @@ exports[`CardContainer should match the snapshot 1`] = `
       }
     }
   />
-  <ConnectFunction
+  <Connect(NoteCard)
     key="2"
     note={
       Object {
@@ -36,7 +36,7 @@ exports[`CardContainer should match the snapshot 1`] = `
       }
     }
   />
-  <ConnectFunction
+  <Connect(NoteCard)
     key="21f67edd-ec5a-4ab4-8b9e-18fa1326a70e"
     note={
       Object {
