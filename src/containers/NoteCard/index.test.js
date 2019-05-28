@@ -10,20 +10,29 @@ describe('Notecard container', () => {
     title: "Mock Note",
     id: "1",
     listItems: [
-      { id: "1", body: "nimsum", completed: false },
-      { id: "2", body: "dimsum", completed: false }
+      { id: "1", body: "take out trash", completed: false },
+      { id: "2", body: "wash dishes", completed: false }
     ]
   }
+  let mockUpdateExistingNote = jest.fn();
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
       < NoteCard 
-        note={ mockNoteCard }/>
+        note={ mockNoteCard }
+        updateExistingNote={ mockUpdateExistingNote }/>
     )
   })
+
   it('should have default state', () => {
     expect(wrapper.state()).toHaveProperty('id');
     expect(wrapper.state()).toHaveProperty('listItems');
     expect(wrapper.state()).toHaveProperty('title');
   })
+
+  it('should match component snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  })
+
+
 })

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notecard container should match component snapshot 1`] = `
+<NavLink
+  activeClassName="active"
+  exact={true}
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+  to="/notes/1"
+>
+  <article
+    className="note-card"
+  >
+    <h3>
+      Mock Note
+    </h3>
+    <ul
+      className="note-items"
+    >
+      <ConnectFunction
+        item={
+          Object {
+            "body": "take out trash",
+            "completed": false,
+            "id": "1",
+          }
+        }
+        key="1"
+        updateListItems={[Function]}
+      />
+      <ConnectFunction
+        item={
+          Object {
+            "body": "wash dishes",
+            "completed": false,
+            "id": "2",
+          }
+        }
+        key="2"
+        updateListItems={[Function]}
+      />
+    </ul>
+    <button
+      className="delete-card"
+      onClick={[Function]}
+    >
+      X
+    </button>
+  </article>
+</NavLink>
+`;
