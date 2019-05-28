@@ -3,7 +3,6 @@ import { NoteCard, mapDispatchToProps } from './index';
 import { shallow } from 'enzyme';
 import { updateNote, deleteNote } from '../../actions/';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
-// import * as utils from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
 jest.mock('../../utils/apiFetches/deleteNote');
@@ -86,6 +85,7 @@ describe('Notecard container', () => {
     it('should set invoke updateExistingNote after setting state', () => {
       wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
       const expected = {
+        color: 'white',
         title: "Mock Note",
         id: "1",
         listItems: [
