@@ -107,4 +107,12 @@ describe("ListItem", () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should invoke editing when list item is clicked', () => {
+    wrapper.setProps({ editing: true })
+    wrapper.find('p.list-item').simulate('click');
+    expect(wrapper.state().editable).toBe(true);
+  })
+
+
 });
