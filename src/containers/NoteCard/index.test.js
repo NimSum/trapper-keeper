@@ -5,6 +5,8 @@ import { updateNote, deleteNote } from '../../actions/';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
+jest.mock('../../utils/apiFetches/putNote');
+
 describe('Notecard container', () => {
   const mockNoteCard = {
     title: "Mock Note",
@@ -68,12 +70,28 @@ describe('Notecard container', () => {
 
   describe('updateStateAndDatabase', () => {
     const mockUpdatedListItems = [
-      { id: "1", body: "take out trash", completed: false },
-      { id: "2", body: "wash dishes", completed: false }
+      { id: "1", body: "take out trash", completed: true },
+      { id: "2", body: "wash dishes", completed: true }
     ]
+
     it('should set state updated list items', () => {
       wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
       expect(wrapper.state().listItems).toEqual(mockUpdatedListItems);
     })
+
+    it('should set invoke updateExistingNote after setting state', () => {
+      wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
+      const expected = {
+        title: "Mock Note",
+        id: "1",
+        listItems: [
+          { id: "1", body: "take out trash", completed: true },
+          { id: "2", body: "wash dishes", completed: true }
+        ]
+      }
+      expect(mockUpdateExistingNote).toHaveBeenCalledWith(expected);
+    })
+
+
   })
 })
