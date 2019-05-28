@@ -17,15 +17,6 @@ describe('Notecard container', () => {
       { id: "2", body: "wash dishes", completed: false }
     ]
   }
-  const mockStateWithNoteCard = {
-    title: "Mock Note",
-    id: "1",
-    listItems: [
-      { id: "1", body: "take out trash", completed: false },
-      { id: "2", body: "wash dishes", completed: false }
-    ],
-    error: ''
-  }
   let mockUpdateExistingNote = jest.fn();
   let mockRemoveNote = jest.fn();
   let wrapper;
@@ -127,6 +118,12 @@ describe('Notecard container', () => {
       const expected = wrapper.state().id;
       expect(deleteNoteFetch).toHaveBeenCalledWith(expected);
       expect(mockRemoveNote).toHaveBeenCalledTimes(1);
+    })
+
+    it('should call set state error when fetch fails', async () => {
+      deleteNoteFetch.mockImplementation(() => Promise.reject('Failed to delete note'));
+      await wrapper.instance().deleteNote();
+      expect(wrapper.state().error).toEqual('s');
     })
 
   })
