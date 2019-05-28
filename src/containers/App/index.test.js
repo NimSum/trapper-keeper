@@ -55,22 +55,26 @@ describe("App", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should invoke setNotes when fetch is successful", async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve(mockNotes)
-    }))
-    await wrapper.instance().componentDidMount();
-    expect(mockSetNotes).toHaveBeenCalledTimes(1);
-  })
+  describe('componentDidMount', () => {
 
-  it("should setState error when fetch fails", async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      ok: false,
-    }))
-    const expected = { error: Error('Failed to get notes') };
-    await wrapper.instance().componentDidMount();
-    expect(wrapper.state()).toEqual(expected);
+    it("should invoke setNotes when fetch is successful", async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockNotes)
+      }))
+      const expected = mockNotes.notes;
+      await wrapper.instance().componentDidMount();
+      expect(mockSetNotes).toHaveBeenCalledWith(expected);
+    })
+  
+    it("should setState error when fetch fails", async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        ok: false,
+      }))
+      const expected = { error: Error('Failed to get notes') };
+      await wrapper.instance().componentDidMount();
+      expect(wrapper.state()).toEqual(expected);
+    })
   })
 
   describe("mapStateToProps", () => {
