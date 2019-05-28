@@ -36,6 +36,11 @@ describe("ListItem", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot when editable state is true", () => {
+    wrapper.setState({ editable: true });
+    expect(wrapper).toMatchSnapshot();
+  })
+
   it("should have a default state", () => {
     expect(wrapper.state()).toEqual(mockDefaultState);
   });

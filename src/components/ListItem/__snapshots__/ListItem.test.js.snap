@@ -26,6 +26,26 @@ exports[`ListItem should match snapshot when completed is set to true 1`] = `
 </li>
 `;
 
+exports[`ListItem should match snapshot when editable state is true 1`] = `
+<li
+  className="list-item"
+  key="4"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      className="list-item-input"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </form>
+</li>
+`;
+
 exports[`ListItem should match snapshot when isEditing is true 1`] = `
 <li
   className="list-item"
