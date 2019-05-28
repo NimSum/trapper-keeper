@@ -8,92 +8,94 @@ import { addNotes } from '../../actions/index'
 describe('ListItem', () => {
   let wrapper;
   let mockNotes;
-  let mockItem = {
-     id: 4,
-     body: 'Hello', 
-     completed: false
-  }
+  let mockItem;
   let mockEditing = false;
-  let mockUpdateListItems = jest.fn()
+  let mockUpdateListItems = jest.fn();
   let mockDefaultState = {
     editable: false,
     body: ''
-  } 
+  };
 
   beforeEach(()=> {
+    mockItem = {
+      id: 4,
+      body: 'Hello', 
+      completed: false
+    };
     wrapper = shallow(
     <ListItem
       item={ mockItem }
       editing={ mockEditing }
       updateListItems={ mockUpdateListItems }
     />, {disableLifecycleMethods: true})
-  })
+  });
 
   it('should match the snapshot' , () => {
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
   it('should have a default state', () => {
-    expect(wrapper.state()).toEqual(mockDefaultState)
-  })
+    expect(wrapper.state()).toEqual(mockDefaultState);
+  });
 
   it('should set the editable property to true', () => {
-    wrapper.editItem = jest.fn()
-    wrapper.instance().editItem()
-    expect(wrapper.state()).toEqual({ body: "", editable: true })
-  })
+    wrapper.editItem = jest.fn();
+    wrapper.instance().editItem();
+    expect(wrapper.state()).toEqual({ body: "", editable: true });
+  });
 
-  it('should update state of body', () => {
-    const mockEvent = {target: {value:"Clean Room"}}
-    wrapper.instance().handleChange(mockEvent)
-    expect(wrapper.state('body')).toBe('Clean Room')
-  })
+  it('should update state of body on handleChange', () => {
+    const mockEvent = {target: {value:"Clean Room"}};
+    wrapper.instance().handleChange(mockEvent);
+    expect(wrapper.state('body')).toBe('Clean Room');
+  });
 
   it('should set state of editable to false on handleSubmit', () => {
-    const mockEvent = {target: {value: false}}
-    wrapper.instance().handleChange(mockEvent)
-    expect(wrapper.state('editable')).toBe(false)
-  })
+    const mockEvent = {target: {value: false}};
+    wrapper.instance().handleChange(mockEvent);
+    expect(wrapper.state('editable')).toBe(false);
+  });
 
   it('should call updateListItems on handleSubmit', () => {
-    const mockEvent = {preventDefault: jest.fn()}
-    wrapper.instance().handleSubmit(mockEvent)
-    expect(mockUpdateListItems).toHaveBeenCalled()
-  })
+    const mockEvent = {preventDefault: jest.fn()};
+    wrapper.instance().handleSubmit(mockEvent);
+    expect(mockUpdateListItems).toHaveBeenCalled();
+  });
 
   it('should call updateListItems on checkItem', () => {
-    wrapper.instance().checkItem()
-    expect(mockUpdateListItems).toHaveBeenCalled()
-  })
-
-  // it('should toggle the completed property when checkItems is called', () => {
-  //   wrapper.instance().checkItem()
-  //   expect(this.props.item.completed).toBe(!this.props.item.completed)
-  // })
+    wrapper.instance().checkItem();
+    expect(mockUpdateListItems).toHaveBeenCalled();
+  });
 
   it('should call updateListItems on deleteItem', () => {
-    wrapper.instance().deleteItem()
-    expect(mockUpdateListItems).toHaveBeenCalled()
-  })
+    wrapper.instance().deleteItem();
+    expect(mockUpdateListItems).toHaveBeenCalled();
+  });
 
-  //   it('calls handleChange when title is changed', () => {
-  //   wrapper = mount(
-  //     <ListItem   
-  //       item={ mockItem }
-  //       editing={ mockEditing }
-  //       updateListItems={ mockUpdateListItems } 
-  //       />)
-  //   const spy = spyOn(wrapper.instance(), 'handleChange')
-  //   wrapper.instance().forceUpdate()
-  //   const mockEvent = {target: {value:"Clean Room"}}
-  //   wrapper.find('.list-item-input').simulate('change', mockEvent)
-  //   expect(spy).toHaveBeenCalled()
-  // })
+  it('should match snapshot when isEditing is true', () => {
+    wrapper = shallow(
+    <ListItem
+      item={ mockItem }
+      editing= { !mockEditing }
+      updateListItems={ mockUpdateListItems }
+    />, {disableLifecycleMethods: true});
+    expect(wrapper).toMatchSnapshot();
+  });
 
-
-
-
-
-})
+  it('should match snapshot when completed is set to true', () => {
+    mockItem = {
+      id: 4,
+      body: 'Hello', 
+      completed: true
+    }
+    wrapper = shallow(
+    <ListItem
+      item={ mockItem }
+      editing= { !mockEditing }
+      updateListItems={ mockUpdateListItems }
+    />, {disableLifecycleMethods: true});
+    expect(wrapper).toMatchSnapshot();
+  });
+});
 
 

@@ -54,7 +54,6 @@ export class ListItem extends Component {
     } else {
       checkBox = <i className="far fa-square" onClick={this.checkItem}></i>
     }
-    console.log(this.props.editing)
     const form = (
       <form onSubmit={ this.handleSubmit }>
         <input
