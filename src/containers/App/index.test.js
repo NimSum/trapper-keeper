@@ -64,6 +64,14 @@ describe("App", () => {
     expect(mockSetNotes).toHaveBeenCalledTimes(1);
   })
 
+  it("should setState error when fetch fails", async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: false,
+    }))
+    const expected = { error: Error('Failed to get notes') };
+    await wrapper.instance().componentDidMount();
+    expect(wrapper.state()).toEqual(expected);
+  })
 
   describe("mapStateToProps", () => {
     it("should return an array or notes", () => {
