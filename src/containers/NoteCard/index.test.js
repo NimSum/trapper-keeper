@@ -65,4 +65,15 @@ describe('Notecard container', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     })
   })
+
+  describe('updateStateAndDatabase', () => {
+    const mockUpdatedListItems = [
+      { id: "1", body: "take out trash", completed: false },
+      { id: "2", body: "wash dishes", completed: false }
+    ]
+    it('should set state updated list items', () => {
+      wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
+      expect(wrapper.state().listItems).toEqual(mockUpdatedListItems);
+    })
+  })
 })
