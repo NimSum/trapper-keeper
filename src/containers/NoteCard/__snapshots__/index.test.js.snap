@@ -13,6 +13,11 @@ exports[`Notecard container should match component snapshot 1`] = `
 >
   <article
     className="note-card"
+    style={
+      Object {
+        "background": "white",
+      }
+    }
   >
     <h3>
       Mock Note
@@ -42,13 +47,45 @@ exports[`Notecard container should match component snapshot 1`] = `
         key="2"
         updateListItems={[Function]}
       />
+      <p>
+        Completed
+      </p>
+      <hr />
     </ul>
-    <button
-      className="delete-card"
-      onClick={[Function]}
+    <div
+      className="svg-container"
     >
-      X
-    </button>
+      <div
+        className="color-svgs"
+      >
+        <i
+          className="fas fa-circle white"
+          data-color="white"
+          onClick={[Function]}
+        />
+        <i
+          className="fas fa-circle blue"
+          data-color="#40c3ff"
+          onClick={[Function]}
+        />
+        <i
+          className="fas fa-circle red"
+          data-color="#ff6d3f"
+          onClick={[Function]}
+        />
+        <i
+          className="fas fa-circle yellow"
+          data-color="#fcf296"
+          onClick={[Function]}
+        />
+      </div>
+      <div>
+        <i
+          className="fas fa-trash-alt"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
   </article>
 </NavLink>
 `;

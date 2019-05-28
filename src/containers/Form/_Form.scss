@@ -19,3 +19,19 @@
 .save-button {
   margin-top: 15px;
 }
+
+.pop-up {
+  animation: 500ms pop-up ease-in-out;
+}
+
+@keyframes pop-up{
+  0% {
+    opacity:  0;
+    transform: scaleY(0);
+    }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

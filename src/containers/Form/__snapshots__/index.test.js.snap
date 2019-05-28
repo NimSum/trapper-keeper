@@ -2,7 +2,7 @@
 
 exports[`Form Container should match snapshot with no props passed 1`] = `
 <div
-  className="form-container"
+  className="form-container drop-down"
 >
   <div
     className="title-form"
@@ -11,7 +11,7 @@ exports[`Form Container should match snapshot with no props passed 1`] = `
       className="title"
       name="title"
       onChange={[Function]}
-      placeholder="Title"
+      placeholder="Add a Title"
       type="text"
       value=""
     />
@@ -40,7 +40,7 @@ exports[`Form Container should match snapshot with no props passed 1`] = `
 
 exports[`Form Container should match snapshot with notecard prop 1`] = `
 <div
-  className="form-container"
+  className="form-container pop-up"
 >
   <div
     className="title-form"
@@ -49,7 +49,7 @@ exports[`Form Container should match snapshot with notecard prop 1`] = `
       className="title"
       name="title"
       onChange={[Function]}
-      placeholder="Title"
+      placeholder="Add a Title"
       type="text"
       value="Mock Note"
     />

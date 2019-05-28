@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App should match snapshot 1`] = `
-<div>
+<main>
   <h1>
     Trapper Keeper
   </h1>
@@ -37,5 +37,5 @@ exports[`App should match snapshot 1`] = `
     render={[Function]}
   />
   <ConnectFunction />
-</div>
+</main>
 `;

@@ -104,7 +104,7 @@ export class Form extends Component {
     }
 
     return (
-      <div className='form-container'>
+      <div className={`form-container ${this.state.editing ? 'pop-up' : 'drop-down'}`}>
         <div className='title-form'>
           <input 
             placeholder='Add a Title' 
