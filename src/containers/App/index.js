@@ -29,7 +29,9 @@ export class App extends Component {
   render() {
     return (
       <main>
-        <h1>Trapper Keeper</h1>
+        <Link exact to="/">
+          <h1>Trapper Keeper</h1>
+        </Link>
         <hr className="header-break" />
         <Link exact to="/new-note">
           <h2>
