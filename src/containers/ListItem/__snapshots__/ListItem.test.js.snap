@@ -8,22 +8,20 @@ exports[`ListItem should match the snapshot 1`] = `
   <div
     className="item-container"
   >
-    <button
+    <i
+      className="far fa-square"
       onClick={[Function]}
-    >
-      done
-    </button>
+    />
     <p
       className="list-item"
       onClick={false}
     >
       Hello
     </p>
-    <button
+    <i
+      className="fas fa-times"
       onClick={[Function]}
-    >
-      x
-    </button>
+    />
   </div>
 </li>
 `;

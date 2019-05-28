@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import ListItem from '../../containers/ListItem';
 import { NavLink, Link } from 'react-router-dom'
-import { updateNote } from '../../actions/index';
+import { updateNote, deleteNote } from '../../actions/';
 import { connect } from 'react-redux';
-import { deleteNote } from '../../actions';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
@@ -11,7 +10,10 @@ export class NoteCard extends Component {
   constructor() {
     super();
     this.state = {
-      //Do we need to have this initial state as emopty or can we get rid of it? 
+      id: '',
+      listItems: [],
+      title: '',
+      error: ''
     }
   }
 
@@ -39,19 +41,18 @@ export class NoteCard extends Component {
       try {
         await putNote({ ...this.state })
       } catch(error) {
-        console.log(error);
+        this.setState({ error })
       }
     });
   }
 
-  deleteNote = async() => {
+  deleteNote = async () => {
     const {id} = this.props.note
-    console.log(id, 'Testing delete')
     try{
-      deleteNoteFetch(id);
-      this.props.removeNote(id)
-    }catch(error){
-      console.log('deleteNote', error)
+      await deleteNoteFetch(id);
+      this.props.removeNote(id);
+    }catch(error) {
+      this.setState({ error });
     }
   }
 
@@ -63,7 +64,11 @@ export class NoteCard extends Component {
 
     const uncompletedListItems = this.props.note.listItems.filter(item => {
       return !item.completed}).map(filteredItem => 
-      (<ListItem updateListItems={ this.updateListItems } item={ filteredItem } />)
+      (<ListItem 
+        updateListItems={ this.updateListItems }
+        item={ filteredItem }
+        key={ filteredItem.id } 
+      />)
     )
 
     let lineBreak;
@@ -74,23 +79,24 @@ export class NoteCard extends Component {
     }
 
     return (
-      <NavLink exact to={`/notes/${this.props.note.id}`} style={{ textDecoration: 'none'}} activeClassName='active'>
-        <article className='note-card'>
-          <h3>{this.props.note.title}</h3>
-          <ul className='note-items'>
-            { uncompletedListItems }
-            { completedText }
-            { lineBreak }
-            { completedListItems }
-          </ul>
-          <i className="fas fa-trash-alt" onClick={this.deleteNote}></i>
-        </article>
+      <NavLink 
+        exact to={`/notes/${this.props.note.id}`} 
+        style={{ textDecoration: 'none'}}
+        activeClassName='active'>
+          <article className='note-card'>
+            <h3>{this.props.note.title}</h3>
+            <ul className='note-items'>
+              { uncompletedListItems }
+              { <hr /> && completedListItems }
+            </ul>
+            <button className="delete-card" onClick={this.deleteNote}>X</button>
+          </article>
       </NavLink>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   updateExistingNote: note => dispatch(updateNote(note)),
   removeNote: id=> dispatch(deleteNote(id))
 })

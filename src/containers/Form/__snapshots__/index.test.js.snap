@@ -30,6 +30,7 @@ exports[`Form Container should match snapshot with no props passed 1`] = `
     />
   </form>
   <button
+    className="save-button"
     onClick={[Function]}
   >
     Save
@@ -54,7 +55,7 @@ exports[`Form Container should match snapshot with notecard prop 1`] = `
     />
   </div>
   <div>
-    <ConnectFunction
+    <ListItem
       editing={true}
       item={
         Object {
@@ -66,7 +67,7 @@ exports[`Form Container should match snapshot with notecard prop 1`] = `
       key="1"
       updateListItems={[Function]}
     />
-    <ConnectFunction
+    <ListItem
       editing={true}
       item={
         Object {
@@ -92,6 +93,7 @@ exports[`Form Container should match snapshot with notecard prop 1`] = `
     />
   </form>
   <button
+    className="save-button"
     onClick={[Function]}
   >
     Save
