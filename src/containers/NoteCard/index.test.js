@@ -39,14 +39,24 @@ describe('Notecard container', () => {
       id: "1", 
       body: "take out trash in kitchen", 
       completed: true 
-    }
-    const expected = [
-      updatedListItem,
-      { id: "2", body: "wash dishes", completed: false }      
-    ]
+    };
+
     it('should update listItem within local state', () => {
+      const expected = [
+        updatedListItem,
+        { id: "2", body: "wash dishes", completed: false }      
+      ];
       wrapper.instance().updateListItems(updatedListItem);
       expect(wrapper.state().listItems).toEqual(expected);
     })
+
+    it('should delete list item if remove param is true', () => {
+      const expected = [
+        { id: "2", body: "wash dishes", completed: false }      
+      ];
+      wrapper.instance().updateListItems(updatedListItem, true);
+      expect(wrapper.state().listItems).toEqual(expected);
+    })
+
   })
 })
