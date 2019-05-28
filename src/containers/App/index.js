@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom'
 import { addNotes } from '../../actions/';
-import CardContainer from '../../components/CardContainer';
+import CardContainer from '../../containers/CardContainer';
 import Form from '../Form';
 
 export class App extends Component {

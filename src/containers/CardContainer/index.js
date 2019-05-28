@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NoteCard from '../../containers/NoteCard';
-import { Route, Link } from 'react-router-dom'
 
 export const CardContainer = ({ notes }) => (
   <section className="notes-container">
