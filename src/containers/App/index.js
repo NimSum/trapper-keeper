@@ -4,6 +4,8 @@ import { Route, Link } from 'react-router-dom'
 import { addNotes } from '../../actions/';
 import CardContainer from '../../containers/CardContainer';
 import Form from '../Form';
+import PropTypes from 'prop-types';
+
 
 export class App extends Component {
 
@@ -45,4 +47,15 @@ export const mapDispatchToProps = (dispatch) => ({
   setNotes: (notes) => dispatch(addNotes(notes))
 })
 
+App.propTypes = {
+  history: PropTypes.object, 
+  location: PropTypes.object,
+  match: PropTypes.object,
+  notes: PropTypes.array,
+  setNotes: PropTypes.func
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+

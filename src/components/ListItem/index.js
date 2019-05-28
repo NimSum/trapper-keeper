@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import  PropTypes from 'prop-types'
 
 export class ListItem extends Component {
   constructor() {
@@ -90,6 +91,10 @@ export class ListItem extends Component {
 }
 
 
+ListItem.propTypes = {
+  item: PropTypes.object, 
+  updateListItems: PropTypes.func
+}
 
 
 export default ListItem;

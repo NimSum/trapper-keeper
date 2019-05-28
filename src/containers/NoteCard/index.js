@@ -5,6 +5,7 @@ import { updateNote, deleteNote } from '../../actions/';
 import { connect } from 'react-redux';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
+import { PropTypes } from 'prop-types';
 
 export class NoteCard extends Component {
   constructor() {
@@ -120,4 +121,11 @@ export const mapDispatchToProps = dispatch => ({
   removeNote: id=> dispatch(deleteNote(id))
 })
 
+NoteCard.propTypes = {
+  note: PropTypes.object,
+  removeNote: PropTypes.func,
+  updateExistingNote: PropTypes.func
+}
+
 export default connect(null, mapDispatchToProps)(NoteCard);
+

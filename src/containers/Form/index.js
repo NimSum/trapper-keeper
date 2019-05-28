@@ -8,6 +8,7 @@ import  uuidv4 from 'uuid/v4';
 import { putNote } from '../../utils/apiFetches/putNote';
 import {Redirect} from 'react-router-dom';
 
+
 export class Form extends Component {
   constructor() {
     super();
@@ -148,7 +149,15 @@ export const mapDispatchToProps = dispatch => ({
 Form.propTypes = {
   addNewNote: PropTypes.func,
   updateExistingNote: PropTypes.func,
-  foundNote: PropTypes.object
+  foundNote: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
 }
 
 export default connect(null, mapDispatchToProps)(Form);
+
+
+
+
+
