@@ -92,6 +92,11 @@ describe('Notecard container', () => {
       expect(mockUpdateExistingNote).toHaveBeenCalledWith(expected);
     })
 
+    it('should set putNote passing updated state as args', async () => {
+      await wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
+      const expected = wrapper.state();
+      expect(putNote).toHaveBeenCalledWith(expected);
+    })
 
   })
 })
