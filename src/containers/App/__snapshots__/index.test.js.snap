@@ -5,6 +5,21 @@ exports[`App should match snapshot 1`] = `
   <h1>
     Trapper Keeper
   </h1>
+  <hr
+    className="header-break"
+  />
+  <Link
+    exact={true}
+    to="/new-note"
+  >
+    <h2>
+       Add a New Note 
+      <i
+        className="fas fa-plus-square"
+      />
+       
+    </h2>
+  </Link>
   <Route
     component={
       Object {

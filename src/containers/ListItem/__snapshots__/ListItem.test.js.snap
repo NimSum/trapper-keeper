@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ListItem should match snapshot when completed is set to true 1`] = `
+<li
+  className="list-item"
+  key="4"
+>
+  <div
+    className="item-container"
+  >
+    <i
+      className="far fa-check-square"
+      onClick={[Function]}
+    />
+    <p
+      className="completed-item list-item"
+      onClick={[Function]}
+    >
+      Hello
+    </p>
+    <i
+      className="fas fa-times"
+      onClick={[Function]}
+    />
+  </div>
+</li>
+`;
+
+exports[`ListItem should match snapshot when isEditing is true 1`] = `
+<li
+  className="list-item"
+  key="4"
+>
+  <div
+    className="item-container"
+  >
+    <i
+      className="far fa-square"
+      onClick={[Function]}
+    />
+    <p
+      className="list-item"
+      onClick={[Function]}
+    >
+      Hello
+    </p>
+    <i
+      className="fas fa-times"
+      onClick={[Function]}
+    />
+  </div>
+</li>
+`;
+
 exports[`ListItem should match the snapshot 1`] = `
 <li
   className="list-item"
@@ -8,22 +60,20 @@ exports[`ListItem should match the snapshot 1`] = `
   <div
     className="item-container"
   >
-    <button
+    <i
+      className="far fa-square"
       onClick={[Function]}
-    >
-      done
-    </button>
+    />
     <p
       className="list-item"
       onClick={false}
     >
       Hello
     </p>
-    <button
+    <i
+      className="fas fa-times"
       onClick={[Function]}
-    >
-      x
-    </button>
+    />
   </div>
 </li>
 `;

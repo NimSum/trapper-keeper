@@ -52,11 +52,5 @@ exports[`CardContainer should match the snapshot 1`] = `
       }
     }
   />
-  <Link
-    exact={true}
-    to="/new-note"
-  >
-     New Note 
-  </Link>
 </section>
 `;
