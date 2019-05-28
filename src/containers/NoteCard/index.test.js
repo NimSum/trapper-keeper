@@ -84,7 +84,7 @@ describe("Notecard container", () => {
     it("should set invoke updateExistingNote after setting state", () => {
       wrapper.instance().updateStateAndDatabase(mockUpdatedListItems);
       const expected = {
-        color: "white",
+        color: 'white',
         title: "Mock Note",
         id: "1",
         listItems: [

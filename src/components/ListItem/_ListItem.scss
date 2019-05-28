@@ -2,12 +2,12 @@
   background-color: white;
 }
 
-.item-container {
-
-}
-
 .list-item {
   list-style: none;
+
+  p {
+    text-indent: 7.5px;
+  }
 }
 
 .completed-item {

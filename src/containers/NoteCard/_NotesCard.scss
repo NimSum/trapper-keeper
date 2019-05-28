@@ -6,6 +6,8 @@
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 1px;
   padding: 7.5px 15px;
+  transition: background-color 150ms linear;
+  animation: 500ms pop ease-in-out;
 
   h3 { 
     margin: 0;
@@ -56,5 +58,14 @@
   visibility: hidden;
 }
 
+@keyframes pop {
+  0% {
+  opacity:  0;
+  transform: scale(0);
+  }
 
-
+  100% {
+  opacity: 1;
+  transform: scale(1);
+  }
+}
