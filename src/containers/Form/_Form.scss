@@ -1,9 +1,10 @@
 .form-container {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   width: 33%;
   margin: 0 auto 20px;  
   padding: 5px 10px;
   line-height: 1.4;
+  border-radius: 8px;
 }
 
 .title-form {
@@ -17,5 +18,6 @@
 }
 
 .save-button {
-  margin-top: 15px;
+  margin: 15px 0 10px;
+  border-radius: 4px;
 }
