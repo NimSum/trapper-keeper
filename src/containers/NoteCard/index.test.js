@@ -5,6 +5,7 @@ import { updateNote, deleteNote } from '../../actions/';
 import { deleteNoteFetch } from '../../utils/apiFetches/deleteNote';
 import { putNote } from '../../utils/apiFetches/putNote';
 
+jest.mock('../../utils/apiFetches/deleteNote');
 jest.mock('../../utils/apiFetches/putNote');
 
 describe('Notecard container', () => {
@@ -26,12 +27,14 @@ describe('Notecard container', () => {
     error: ''
   }
   let mockUpdateExistingNote = jest.fn();
+  let mockRemoveNote = jest.fn();
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
       < NoteCard 
         note={ mockNoteCard }
-        updateExistingNote={ mockUpdateExistingNote }/>
+        updateExistingNote={ mockUpdateExistingNote } 
+        removeNote={ mockRemoveNote } />
     )
   })
 
@@ -119,6 +122,12 @@ describe('Notecard container', () => {
   })
 
   describe('deleteNote', () => {
-    
+    it('should call deleteNoteFetch using correct params', () => {
+      wrapper.instance().deleteNote();
+      const expected = wrapper.state().id;
+      expect(deleteNoteFetch).toHaveBeenCalledWith(expected);
+      expect(mockRemoveNote).toHaveBeenCalledTimes(1);
+    })
+
   })
 })

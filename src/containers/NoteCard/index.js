@@ -51,9 +51,9 @@ export class NoteCard extends Component {
     console.log(id, 'Testing delete')
     try{
       deleteNoteFetch(id);
-      this.props.removeNote(id)
+      this.props.removeNote(id);
     }catch(error){
-      console.log('deleteNote', error)
+      this.setState({ error });
     }
   }
 
