@@ -129,7 +129,7 @@ export class Form extends Component {
           <input 
             type="text" 
             name="listItemText"
-            value={this.state.listItemText}
+            value={ this.state.listItemText }
             onChange={ this.handleChange }
             onBlur={ this.handleSubmit }
             autoFocus />
