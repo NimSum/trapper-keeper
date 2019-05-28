@@ -34,5 +34,19 @@ describe('Notecard container', () => {
     expect(wrapper).toMatchSnapshot();
   })
 
-
+  describe('updateListItems', () => {
+    const updatedListItem = { 
+      id: "1", 
+      body: "take out trash in kitchen", 
+      completed: true 
+    }
+    const expected = [
+      updatedListItem,
+      { id: "2", body: "wash dishes", completed: false }      
+    ]
+    it('should update listItem within local state', () => {
+      wrapper.instance().updateListItems(updatedListItem);
+      expect(wrapper.state().listItems).toEqual(expected);
+    })
+  })
 })
