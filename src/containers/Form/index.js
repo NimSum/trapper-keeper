@@ -129,12 +129,12 @@ export class Form extends Component {
           <input 
             type="text" 
             name="listItemText"
-            value={this.state.listItemText}
+            value={ this.state.listItemText }
             onChange={ this.handleChange }
             onBlur={ this.handleSubmit }
             autoFocus />
         </form>
-          <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() }>Save</button>      
+          <button onClick={ () => this.state.editing ? this.editNote() : this.addNote() } className="save-button">Save</button>      
       </div>
     )
   }

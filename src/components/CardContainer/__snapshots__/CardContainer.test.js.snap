@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardContainer should match the snapshot 1`] = `
+<section
+  className="notes-container"
+>
+  <ConnectFunction
+    key="1"
+    note={
+      Object {
+        "id": "1",
+        "listItems": Array [
+          Object {
+            "body": "asdf",
+            "completed": false,
+            "id": "1",
+          },
+        ],
+        "title": "randomnote",
+      }
+    }
+  />
+  <ConnectFunction
+    key="2"
+    note={
+      Object {
+        "id": "2",
+        "listItems": Array [
+          Object {
+            "body": "asdf",
+            "completed": false,
+            "id": "2",
+          },
+        ],
+        "title": "randomnoteTWO",
+      }
+    }
+  />
+  <ConnectFunction
+    key="21f67edd-ec5a-4ab4-8b9e-18fa1326a70e"
+    note={
+      Object {
+        "id": "21f67edd-ec5a-4ab4-8b9e-18fa1326a70e",
+        "listItems": Array [
+          Object {
+            "body": "Yelling in a coffee shop",
+            "completed": false,
+            "id": "92f3600b-00e5-4551-82c3-a1c7b409d9d2",
+          },
+        ],
+        "title": "Angry Man",
+      }
+    }
+  />
+</section>
+`;

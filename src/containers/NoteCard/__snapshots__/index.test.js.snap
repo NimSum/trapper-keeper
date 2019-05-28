@@ -20,7 +20,7 @@ exports[`Notecard container should match component snapshot 1`] = `
     <ul
       className="note-items"
     >
-      <ConnectFunction
+      <ListItem
         item={
           Object {
             "body": "take out trash",
@@ -31,7 +31,7 @@ exports[`Notecard container should match component snapshot 1`] = `
         key="1"
         updateListItems={[Function]}
       />
-      <ConnectFunction
+      <ListItem
         item={
           Object {
             "body": "wash dishes",

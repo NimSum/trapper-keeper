@@ -10,11 +10,11 @@ export const CardContainer = ({ notes }) => (
         note={ note } 
         key={note.id} />
     })}
-    <Link exact to='/new-note'> New Note </Link>
+    
   </section>
 )
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   notes: state.notes
 })
 

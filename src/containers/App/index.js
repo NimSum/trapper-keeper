@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import { addNotes } from '../../actions/';
 import CardContainer from '../../components/CardContainer';
 import Form from '../Form'
+
 export class App extends Component {
 
   async componentDidMount() {
@@ -12,10 +13,16 @@ export class App extends Component {
     this.props.setNotes(notes.notes)
   } 
 
+
+  
   render() {
     return (
       <div>
         <h1>Trapper Keeper</h1>
+        <hr  className="header-break"/>
+        <Link exact to='/new-note'>
+          <h2> Add a New Note <i className="fas fa-plus-square"></i> </h2>
+        </Link>
         <Route path='/new-note' component={Form} />
         <Route path='/notes/:id' render={({ match }) => {
           const { id } = match.params;
@@ -30,11 +37,11 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   notes: state.notes
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   setNotes: (notes) => dispatch(addNotes(notes))
 })
 

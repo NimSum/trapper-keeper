@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 export class ListItem extends Component {
   constructor() {
@@ -49,6 +48,12 @@ export class ListItem extends Component {
   
   render() {
     const { id, completed } = this.props.item;
+    let checkBox;
+    if (completed) {
+      checkBox = <i className="far fa-check-square" onClick={this.checkItem}></i>
+    } else {
+      checkBox = <i className="far fa-square" onClick={this.checkItem}></i>
+    }
     console.log(this.props.editing)
     const form = (
       <form onSubmit={ this.handleSubmit }>
@@ -68,10 +73,7 @@ export class ListItem extends Component {
             ? form
             : (
               <div className="item-container">
-                <button 
-                  onClick={ this.checkItem }>
-                  done
-                </button>
+                {checkBox}
                 <p 
                   onClick={ this.props.editing && this.editItem }
                   className={ completed 
@@ -79,7 +81,7 @@ export class ListItem extends Component {
                     : 'list-item'}>    
                     {this.props.item.body || this.state.body }
                 </p>
-                <button onClick={ this.deleteItem }>x</button>
+                <i className="fas fa-times" onClick={ this.deleteItem }></i>
               </div>
               )
         }
@@ -89,7 +91,6 @@ export class ListItem extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-})
 
-export default connect(null, mapDispatchToProps)(ListItem);
+
+export default ListItem;

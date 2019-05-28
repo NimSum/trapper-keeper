@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match snapshot 1`] = `
+<div>
+  <h1>
+    Trapper Keeper
+  </h1>
+  <hr
+    className="header-break"
+  />
+  <Link
+    exact={true}
+    to="/new-note"
+  >
+    <h2>
+       Add a New Note 
+      <i
+        className="fas fa-plus-square"
+      />
+       
+    </h2>
+  </Link>
+  <Route
+    component={
+      Object {
+        "$$typeof": Symbol(react.memo),
+        "WrappedComponent": [Function],
+        "compare": null,
+        "displayName": "Connect(Form)",
+        "type": [Function],
+      }
+    }
+    path="/new-note"
+  />
+  <Route
+    path="/notes/:id"
+    render={[Function]}
+  />
+  <ConnectFunction />
+</div>
+`;

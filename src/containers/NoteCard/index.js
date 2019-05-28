@@ -71,6 +71,13 @@ export class NoteCard extends Component {
       />)
     )
 
+    let lineBreak;
+    let completedText;
+    if (completedListItems) {
+      completedText = <p>Completed</p>
+      lineBreak = <hr />
+    }
+
     return (
       <NavLink 
         exact to={`/notes/${this.props.note.id}`} 
