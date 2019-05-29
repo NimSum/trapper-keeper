@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Trapper Keeper
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This project is a simple site built over 10 days in a team of 4. The site allows you to make notes or todo lists with a dynamic form the notes are saved to a back-end server made with Node.js. The user can then check off list items as completed and change the color of the notes. The user also has the ability to delete any note.
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Simply start by cloning the repo:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```bash
+git clone git@github.com:NimSum/trapper-keeper.git
+```
 
-### `npm test`
+In the same folder you cloned the repository also clone the back-end repository with 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone git@github.com:BrennanDuffey/trapper-keeper-api.git
+```
 
-### `npm run build`
+Once you have cloned the repo, to install the library dependencies cd into the folders just created and run:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+First in the back-end folder run `npm start` in your terminal, you should see "Something is running on http://localhost:3000/".  Now opening a separate tab in the terminal cd into the front-end repository and run `npm start` you're default browser should open a tab to http://localhost:3001/ if not simply go to http://localhost:3001/ in your preferred browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots
 
-### `npm run eject`
+  - Wireframe
+<a src="https://www.figma.com/file/U6GeWtdSvzxAjGIRLYceXMnD/TrapperKeeper?node-id=0%3A1">Figma Wireframe</a>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - Final Project Screenshots
+  
+<img width="583" alt="image" src="https://i.postimg.cc/wBt6b0f0/localhost-3002-2.png">
+<img width="583" alt="image" src="https://i.postimg.cc/BQwkwsrf/localhost-3002-3.png">
+<img width="583" alt="image" src="https://i.postimg.cc/t4YD1xvL/localhost-3002-1.png">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Emphasis of the Project
 
-## Learn More
+Further knowledge on the following technologies/principles:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React
+- Redux
+- Jest and Enzyme Testing
+- Node.js
+- SuperTest
+- Github Workflow in larger groups
+- Asynchronous Testing
+- JSX
+- Fetching Complex Data
+- Prop-Types
+- Linting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contributors/Project Length
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Created by:
+- Brennan Duffey: [GitHub](https://github.com/BrennanDuffey),
+                [Email](mailto:BrennanDuffey@gmail.com),
+                [LinkedIn](https://www.linkedin.com/in/brennan-duffey-8a387182/)
 
-### Analyzing the Bundle Size
+- Bridgette Coyle: [GitHub](https://github.com/B-Coyle), 
+                [Email](mailto:bacoyle0409@gmail.com),
+                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
+                
+- Nimrod Garcia: [GitHub](https://github.com/NimSum), 
+                [Email](mailto:nimm.garcia@gmail.com),
+                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
+                
+- Adam Niedzwiecki: [GitHub](https://github.com/SiimonStark), 
+                [Email](mailto:AdamN8142@gmail.com),
+                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Improvements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- https://github.com/NimSum/trapper-keeper/issues
