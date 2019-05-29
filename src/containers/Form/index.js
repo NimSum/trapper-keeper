@@ -136,6 +136,13 @@ export class Form extends Component {
         />
       ));
 
+      let lineBreak;
+      let completedText;
+      if (completedListItems.length) {
+        completedText = <p>Completed</p>;
+        lineBreak = <hr />;
+      }
+
     return (
       <div className={`form-container ${this.state.editing ? 'pop-up' : 'drop-down'}`}>
         <div className='title-form'>
@@ -150,10 +157,8 @@ export class Form extends Component {
         </div>
         <div>
           {uncompletedListItems}
-          {completedListItems.length && (<span>
-            <p>Completed</p>
-            <hr />
-          </span>)}
+          {completedText}
+          {lineBreak}
           {completedListItems}
         </div>
         <form onSubmit={this.handleSubmit}>
