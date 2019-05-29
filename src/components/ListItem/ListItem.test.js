@@ -1,13 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { ListItem } from "./index.js";
 import { shallow, mount } from "enzyme";
-import { mapDispatchToProps } from "../../containers/App";
-import { addNotes } from "../../actions/index";
 
 describe("ListItem", () => {
   let wrapper;
-  let mockNotes;
   let mockItem;
   let mockEditing = false;
   let mockUpdateListItems = jest.fn();
@@ -35,6 +31,11 @@ describe("ListItem", () => {
   it("should match the snapshot", () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("should match snapshot when editable state is true", () => {
+    wrapper.setState({ editable: true });
+    expect(wrapper).toMatchSnapshot();
+  })
 
   it("should have a default state", () => {
     expect(wrapper.state()).toEqual(mockDefaultState);
@@ -102,4 +103,30 @@ describe("ListItem", () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should invoke editing when list item is clicked', () => {
+    wrapper.setProps({ editing: true })
+    wrapper.find('p.list-item').simulate('click');
+    expect(wrapper.state().editable).toBe(true);
+  })
+
+  it('should delete item on click', () => {
+    wrapper.find('i.fas').simulate('click');
+    const expectedFirstArg = { "body": "Hello", "completed": false, "id": 4 };
+    expect(mockUpdateListItems).toHaveBeenCalledWith(expectedFirstArg, true)
+  })
+
+  it('should check item on click', () => {
+    wrapper.find('i.far').simulate('click');
+    const expected = { "body": "Hello", "completed": true, "id": 4 };
+    expect(mockUpdateListItems).toHaveBeenCalledWith(expected);
+  })
+
+  it('should handleSubmit on form submit', () => {
+    const preventDefault = jest.fn();
+    wrapper.setState({ editable: true })
+    const mockEvent = { preventDefault };
+    wrapper.find('form').simulate('submit', mockEvent);
+    expect(preventDefault).toHaveBeenCalledTimes(1);
+  })
 });

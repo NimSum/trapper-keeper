@@ -7,7 +7,7 @@ export const addNewNote = note => {
       const response = await postNewNote(note);
       dispatch(addNote(response));
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 };

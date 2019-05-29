@@ -1,17 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { App } from "./index.js";
-import { mount, shallow } from "enzyme";
+import { App } from "./index";
+import { shallow } from "enzyme";
 import { mapStateToProps, mapDispatchToProps } from "../App";
 import { addNotes } from "../../actions/index";
 
 describe("App", () => {
   let wrapper;
   let mockNotes;
-
+  let mockSetNotes = jest.fn();
+  
   beforeEach(() => {
-    wrapper = shallow(<App />);
-
+    wrapper = shallow(
+      < App 
+        setNotes={ mockSetNotes } />
+    );
     mockNotes = [
       {
         title: "randomnote",
@@ -53,6 +55,28 @@ describe("App", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  describe('componentDidMount', () => {
+
+    it("should invoke setNotes when fetch is successful", async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockNotes)
+      }))
+      const expected = mockNotes.notes;
+      await wrapper.instance().componentDidMount();
+      expect(mockSetNotes).toHaveBeenCalledWith(expected);
+    })
+  
+    it("should setState error when fetch fails", async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        ok: false,
+      }))
+      const expected = { error: Error('Failed to get notes') };
+      await wrapper.instance().componentDidMount();
+      expect(wrapper.state()).toEqual(expected);
+    })
+  })
+
   describe("mapStateToProps", () => {
     it("should return an array or notes", () => {
       const mockState = { notes: mockNotes };
@@ -61,6 +85,7 @@ describe("App", () => {
       expect(mappedProps).toEqual(expected);
     });
   });
+
   describe("mapDispatchToProps", () => {
     it("should call dispatch with a note action on componentDidMount", () => {
       const mockDispatch = jest.fn();

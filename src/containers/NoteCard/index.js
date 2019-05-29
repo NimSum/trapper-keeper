@@ -94,7 +94,7 @@ export class NoteCard extends Component {
 
     let lineBreak;
     let completedText;
-    if (completedListItems !== []) {
+    if (completedListItems.length) {
       completedText = <p>Completed</p>;
       lineBreak = <hr />;
     }

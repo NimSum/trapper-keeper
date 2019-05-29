@@ -110,6 +110,32 @@ export class Form extends Component {
       return <Redirect to="/" />;
     }
 
+    const completedListItems = this.state.listItems
+      .filter(item => {
+        return item.completed;
+      })
+      .map(item => (
+        <ListItem
+          updateListItems={this.updateListItems}
+          key={item.id}
+          item={item}
+          editing={this.state.editing}
+        />
+      ));
+
+    const uncompletedListItems = this.state.listItems
+      .filter(item => {
+        return !item.completed;
+      })
+      .map(item => (
+        <ListItem
+          updateListItems={this.updateListItems}
+          item={item}
+          key={item.id}
+          editing={this.state.editing}
+        />
+      ));
+
     return (
       <div className={`form-container ${this.state.editing ? 'pop-up' : 'drop-down'}`}>
         <div className='title-form'>
@@ -123,16 +149,12 @@ export class Form extends Component {
           /> 
         </div>
         <div>
-          {this.state.listItems.map(item => {
-            return (
-              <ListItem
-                key={item.id}
-                item={item}
-                editing={this.state.editing}
-                updateListItems={this.updateListItems}
-              />
-            );
-          })}
+          {uncompletedListItems}
+          {completedListItems.length && (<span>
+            <p>Completed</p>
+            <hr />
+          </span>)}
+          {completedListItems}
         </div>
         <form onSubmit={this.handleSubmit}>
           <input
