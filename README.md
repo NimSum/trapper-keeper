@@ -28,8 +28,7 @@ First in the back-end folder run `npm start` in your terminal, you should see "S
 
 ## Screenshots
 
-  - Wireframe
-<a src="https://www.figma.com/file/U6GeWtdSvzxAjGIRLYceXMnD/TrapperKeeper?node-id=0%3A1">Figma Wireframe</a>
+  - <a href="https://www.figma.com/file/U6GeWtdSvzxAjGIRLYceXMnD/TrapperKeeper?node-id=0%3A1">Figma Wireframe</a>
 
   - Final Project Screenshots
   
