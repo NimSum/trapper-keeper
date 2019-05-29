@@ -62,9 +62,9 @@ Created by:
                 [Email](mailto:BrennanDuffey@gmail.com),
                 [LinkedIn](https://www.linkedin.com/in/brennan-duffey-8a387182/)
 
-- Bridgette Coyle: [GitHub](https://github.com/B-Coyle), 
+- Bridgett Coyle: [GitHub](https://github.com/B-Coyle), 
                 [Email](mailto:bacoyle0409@gmail.com),
-                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
+                [LinkedIn](https://www.linkedin.com/in/bridgett-coyle-6640bb54/)
                 
 - Nimrod Garcia: [GitHub](https://github.com/NimSum), 
                 [Email](mailto:nimm.garcia@gmail.com),
