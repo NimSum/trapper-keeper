@@ -72,7 +72,7 @@ Created by:
                 
 - Adam Niedzwiecki: [GitHub](https://github.com/SiimonStark), 
                 [Email](mailto:AdamN8142@gmail.com),
-                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
+                [LinkedIn](https://www.linkedin.com/in/adam-niedzwiecki-594877170/)
 
 
 ## Improvements
