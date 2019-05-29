@@ -68,7 +68,7 @@ Created by:
                 
 - Nimrod Garcia: [GitHub](https://github.com/NimSum), 
                 [Email](mailto:nimm.garcia@gmail.com),
-                [LinkedIn](https://www.linkedin.com/in/justinpyktel/)
+                [LinkedIn](https://www.linkedin.com/in/nimrod-garcia/)
                 
 - Adam Niedzwiecki: [GitHub](https://github.com/SiimonStark), 
                 [Email](mailto:AdamN8142@gmail.com),
